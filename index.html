@@ -143,6 +143,9 @@ select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px sol
 .qa button:not(.pri):active,.qa button:not(.pri).hit,.qc button:active{background:var(--o);color:#111;border-color:var(--o);font-weight:700}
 .qa button:not(.pri):active::before,.qa button:not(.pri).hit::before{color:#111}
 .qa .pri:active,.qa .pri.hit{background:var(--o2);box-shadow:0 0 0 3px #ff7a0055}
+
+.qp .qa .pri{display:flex;align-items:center;justify-content:center;gap:8px}.qa .pri svg{width:20px;height:20px;fill:currentColor;flex:none}
+.pc .pd{display:grid;place-items:center;border-radius:50%;background:var(--o);border-color:var(--o);color:#111}.pc .pd svg{width:19px;height:19px;fill:currentColor;display:block}
 </style>
 </head>
 <body>
@@ -878,7 +881,8 @@ const YQ=[['best','بهترین'],['1080p','1080p'],['720p','720p'],['480p','480
 const EMB=/^https?:$/.test(location.protocol),PL0=['https://pipedapi.kavin.rocks','https://api.piped.private.coffee','https://pipedapi.adminforge.de'];
 const hgt=x=>+x.height||+String(x.quality||'').replace(/\D.*$/,'')||0,mtp=x=>String(x.mimeType||'')+' '+String(x.format||'');
 async function ytPS(c,id,au){
- return first((ytPiped.L||PL0).slice(0,6).map(b=>async()=>{
+ if(!ytPiped.L){try{const a=await (await try1(c,'https://piped-instances.kavin.rocks/',4000)).json();ytPiped.L=[...new Set((Array.isArray(a)?a:[]).filter(x=>x&&x.api_url).sort((x,y)=>(+y.uptime_24h||0)-(+x.uptime_24h||0)).slice(0,5).map(x=>String(x.api_url).replace(/\/$/,'')).concat(PL0))]}catch(e){if(c.ac.signal.aborted)throw e}}
+ return first((ytPiped.L||PL0).slice(0,8).map(b=>async()=>{
    const r=await try1(c,b+'/streams/'+id,9000);if(!r.ok)throw new Error('HTTP '+r.status);
    const j=await r.json(),A=(j.audioStreams||[]).filter(x=>x&&x.url),V=(j.videoStreams||[]).filter(x=>x&&x.url&&!x.videoOnly);let u='';
    if(au){const m=A.filter(x=>/mp4|m4a/i.test(mtp(x))),L=(m.length?m:A).sort((x,y)=>(+y.bitrate||0)-(+x.bitrate||0));u=L[0]?L[0].url:''}
@@ -915,7 +919,7 @@ async function ytSrv(it,d,r){
  catch(e){if(it.ytk!==k||(c.ac.signal.aborted&&!to))return;ytFail(it,d,to?'سرور تا ۱۰۰ ثانیه پاسخی نداد؛ ممکن است سرور API خاموش، شلوغ یا در دسترس نباشد.':msg(e))}finally{clearTimeout(tt);clearInterval(tk2)}}
 function ytChips(it,d){
  const au=(it.cur||{}).k==='صوت';
- d.querySelector('.qp').innerHTML=(au?'<div class="qn">فایل صوتی همیشه با بالاترین کیفیت ممکن دانلود می‌شود.</div>':'<div class="qn">کیفیت دانلود را انتخاب کنید:</div><div class="qc">'+YQ.map(a=>'<button type="button" data-q="'+a[0]+'" class="'+(it.yq===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>')+'<div class="qa"><button type="button" class="pri" data-qd="1">⬇ دانلود</button>'+(EMB?'<button type="button" data-qs="1">پخش‌کننده برنامه</button>':'')+'<button type="button" data-qo="1">باز کردن در یوتیوب</button><button type="button" data-qx="1">بستن</button></div>'+(au?'':'<div class="qn">اگر سرور API از کیفیت انتخابی پشتیبانی نکند، بهترین کیفیت موجود دانلود می‌شود.</div>')+(EMB?'<div class="qn">اگر پخش‌کننده یوتیوب خطای «Sign in to confirm you’re not a bot» داد، دکمه‌ی «پخش‌کننده برنامه» را بزنید.</div>':'')}
+ d.querySelector('.qp').innerHTML=(au?'<div class="qn">فایل صوتی همیشه با بالاترین کیفیت ممکن دانلود می‌شود.</div>':'<div class="qn">کیفیت دانلود را انتخاب کنید:</div><div class="qc">'+YQ.map(a=>'<button type="button" data-q="'+a[0]+'" class="'+(it.yq===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>')+'<div class="qa"><button type="button" class="pri" data-qd="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>دانلود</button>'+(EMB?'<button type="button" data-qs="1">پخش‌کننده برنامه</button>':'')+'<button type="button" data-qo="1">باز کردن در یوتیوب</button><button type="button" data-qx="1">بستن</button></div>'+(au?'':'<div class="qn">اگر سرور API از کیفیت انتخابی پشتیبانی نکند، بهترین کیفیت موجود دانلود می‌شود.</div>')+(EMB?'<div class="qn">اگر پخش‌کننده یوتیوب خطای «Sign in to confirm you’re not a bot» داد، دکمه‌ی «پخش‌کننده برنامه» را بزنید.</div>':'')}
 function ytShow(it,d,r){
  ytReset(it,d);
  it.yq=r.k==='صوت'?'audio':(S.yq&&S.yq!=='audio'?S.yq:'best');
@@ -956,7 +960,7 @@ const choose=(it,k)=>{const r=(it.res||[])[k];if(r)dlRes(it,r)};
 
 function mk(it){
  const d=document.createElement('div');d.className='card';d.id='i'+it.id;d.dataset.st=it.st;
- d.innerHTML='<div class="fl"><div class="iw"><input type="url" inputmode="url" dir="ltr" autocomplete="off" placeholder="لینک دانلود، یا نام فیلم، سریال و آهنگ"><button class="cl" type="button" aria-label="پاک کردن">×</button></div><button class="pri go">دانلود</button></div><div class="bar"><i></i></div><div class="nm"></div><div class="inf"><span class="t1"><span class="ta"></span><span class="dt"><i>.</i><i>.</i><i>.</i></span><span class="tz"></span></span><span class="t2"></span></div><div class="er"></div><div class="acts"></div><div class="pl"><video playsinline preload="metadata"></video><div class="yv"></div><div class="pt"></div><div class="qp"></div><div class="pc"><button class="pb" type="button" aria-label="پخش و توقف">▶</button><input type="range" class="sk" min="0" max="1000" value="0" aria-label="نوار زمان"><span class="tm">0:00</span><button class="pf" type="button" aria-label="تمام صفحه">⛶</button><button class="pd" type="button" aria-label="دانلود">⬇</button><button class="pq" type="button" aria-label="بستن پخش">✕</button></div></div><div class="spn"><div class="rg"><i></i><b>0%</b></div><span>در حال جستجو<span class="dt"><i>.</i><i>.</i><i>.</i></span></span></div><div class="dls"></div><div class="res"></div>';
+ d.innerHTML='<div class="fl"><div class="iw"><input type="url" inputmode="url" dir="ltr" autocomplete="off" placeholder="لینک دانلود، یا نام فیلم، سریال و آهنگ"><button class="cl" type="button" aria-label="پاک کردن">×</button></div><button class="pri go">دانلود</button></div><div class="bar"><i></i></div><div class="nm"></div><div class="inf"><span class="t1"><span class="ta"></span><span class="dt"><i>.</i><i>.</i><i>.</i></span><span class="tz"></span></span><span class="t2"></span></div><div class="er"></div><div class="acts"></div><div class="pl"><video playsinline preload="metadata"></video><div class="yv"></div><div class="pt"></div><div class="qp"></div><div class="pc"><button class="pb" type="button" aria-label="پخش و توقف">▶</button><input type="range" class="sk" min="0" max="1000" value="0" aria-label="نوار زمان"><span class="tm">0:00</span><button class="pf" type="button" aria-label="تمام صفحه">⛶</button><button class="pd" type="button" aria-label="دانلود"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button><button class="pq" type="button" aria-label="بستن پخش">✕</button></div></div><div class="spn"><div class="rg"><i></i><b>0%</b></div><span>در حال جستجو<span class="dt"><i>.</i><i>.</i><i>.</i></span></span></div><div class="dls"></div><div class="res"></div>';
  const inp=d.querySelector('input');
  const iw=d.querySelector('.iw');
  inp.oninput=()=>{it.url=inp.value;sync(it);if(!inp.value.trim()){killSearch(it);it.res=[];rr(it);d.querySelector('.pq').click();sync(it)}};
