@@ -190,7 +190,7 @@ select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px sol
 <script>
 const $=s=>document.querySelector(s);
 /* نسخهٔ برنامه = سال(۲رقم).ماه.روز.ساعت.دقیقه (میلادی، بدون صفر ابتدایی) — با هر بار تولید فایل جدید به‌روز می‌شود */
-const VER='26.11.4.0.5';$('#ver').textContent=VER;
+const VER='26.11.4.0.26';$('#ver').textContent=VER;
 const DEFSITES='nex1music.ir\nmusicdel.ir\navamovie.ir\ndownloadha.com\ndigimoviez.com\nuptvs.com\ngisomusic.com\nbehplay.com\nbehtaraneh.com\naftabmusic.com\nshabamusic.com\ngitarmuzic.com\nmusicrooz.com\nzardis.net\nremiixbaz.com\ntfilm12.ir\nbandmoviez.one\nnetpaak.ir';
 const DEFPP='https://royal-mode-d4ce.netroz82.workers.dev/';
 const DEFAPI='https://save.brianrianrehan.com/api/v1/download';
@@ -453,6 +453,7 @@ async function run(it){
  }}
 
 const IPTV='https://iptv-org.github.io/iptv/index.m3u',MC={};
+const nm3=r=>r.k==='صوت'&&!r.yt&&!r.ia&&!r.m3&&!/\.mp3(?:[?#&]|$)/i.test(r.url||'');
 const mp=e=>({t:e.t,k:/\.(mp3|aac|m4a|ogg|opus|flac|wav|wma)([?#]|$)/i.test(e.u)?'صوت':/\.m3u8?([?#]|$)/i.test(e.u)?'استریم':'ویدیو',url:e.u,h:e.t.replace(/[\\/:*?"<>|]+/g,'_')});
 function pm3u(txt,base){
  const out=[];let n='';
@@ -484,7 +485,7 @@ function flt(L,q){
  const w=nz(q).split(' ').filter(Boolean),h=e=>ck(e.t+' '+e.u);
  return L.filter(e=>{const x=h(e);return w.every(y=>x.includes(y))}).slice(0,60).map(mp)}
 function plist(it,txt,url,q){
- it.res=flt(pm3u(txt,url),q).filter(r=>!REL(r));it.st='idle';sync(it);
+ it.res=flt(pm3u(txt,url),q).filter(r=>!REL(r)&&!nm3(r));it.st='idle';sync(it);
  rr(it,it.res.length?it.res.length+' مورد؛ دکمهٔ ▶ را بزنید؛ دانلود از داخل پخش‌کننده انجام می‌شود (برای جستجو، بعد از لینک نام را بنویسید)':'در این لیست چیزی پیدا نشد')}
 async function sM3u(it,url,q){MC[url]=MC[url]||get(it,url).then(r=>r.text());const t=await MC[url].catch(e=>{delete MC[url];throw e});return flt(pm3u(t,url),q)}
 async function sCommons(it,q,ty,pg){
@@ -492,8 +493,8 @@ async function sCommons(it,q,ty,pg){
  return Object.values((j.query&&j.query.pages)||{}).filter(x=>x.imageinfo).map(x=>{const i=x.imageinfo[0];return{t:x.title.replace(/^File:/,''),k:/^audio/.test(i.mime)||/\.(mp3|ogg|oga|opus|flac|wav|mid)$/i.test(x.title)?'صوت':'ویدیو',s:i.size,dr:+i.duration||0,url:i.url}})}
 async function sOv(it,q,ty,pg){
  if(!ty.includes('audio'))throw new Error('x');
- const j=await (await get(it,'https://api.openverse.org/v1/audio/?page_size=20&page='+((pg||0)+1)+'&q='+encodeURIComponent(q))).json();
- return (j.results||[]).filter(x=>x.url).map(x=>({t:x.title||String(x.id),k:'صوت',url:x.url,s:x.filesize||0,dr:x.duration?x.duration/1000:0,d:'Openverse'}))}
+ const j=await (await get(it,'https://api.openverse.org/v1/audio/?extension=mp3&page_size=20&page='+((pg||0)+1)+'&q='+encodeURIComponent(q))).json();
+ return (j.results||[]).filter(x=>x.url).map(x=>({t:x.title||String(x.id),k:'صوت',m3:1,url:x.url,s:x.filesize||0,dr:x.duration?x.duration/1000:0,d:'Openverse'}))}
 const YTH='https://www.youtube.com/watch?v=';
 const ytd=s=>{if(typeof s==='number')return s;const p=String(s||'').split(':').map(Number);return p.length&&!p.some(isNaN)?p.reduce((a,b)=>a*60+b,0):0};
 const ytr=(id,t,ch,dr,mu)=>({t:(t||id)+(ch?' — '+ch:''),k:mu?'صوت':'ویدیو',yt:id,url:YTH+id,dr:dr||0,d:mu?'YouTube Music':'YouTube',pb:2,pm:1});
@@ -538,7 +539,7 @@ async function more(it){
  const R=await Promise.allSettled([sCommons(it,q,ty,it.pg),sArch(it,q,ty,it.pg),sOv(it,q,ty,it.pg)]);
  if(it.tk!==tk)return;it.busy=0;sync(it);
  const seen={};(it.res||[]).concat(it.weak||[]).forEach(r=>{seen[r.url||r.ia]=1});
- const A=[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value)).filter(r=>!seen[r.url||r.ia]&&!REL(r)).map(r=>{r.d=r.d||'منبع';r.sc=rank(r,[q]);return r});
+ const A=[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value)).filter(r=>!seen[r.url||r.ia]&&!REL(r)&&!nm3(r)).map(r=>{r.d=r.d||'منبع';r.sc=rank(r,[q]);return r});
  it.res=(it.res||[]).concat(A.filter(r=>r.sc>=1));it.weak=(it.weak||[]).concat(A.filter(r=>r.sc<1));
  rr(it,(it.ss?'{S}\n':'')+'!'+(A.length?A.length+' نتیجهٔ جدید اضافه شد':'نتیجهٔ بیشتری پیدا نشد'))}
 async function sArch(it,q,ty,pg){
@@ -551,7 +552,7 @@ function iaMeta(it,id){return IAM[id]=IAM[id]||iaM(it,id).catch(e=>{delete IAM[i
 const iaT=x=>{x=String(x||'');return /:/.test(x)?x.split(':').reduce((a,b)=>a*60+(+b||0),0):(+x||0)};
 async function iaM(it,id){
  const j=await (await get(it,'https://archive.org/metadata/'+encodeURIComponent(id))).json();
- const au=((j.metadata||{}).mediatype)==='audio',O=au?['flac','wav','m4a','mp3','ogg','mp4','m4v','webm','mkv','ogv']:['mp4','m4v','webm','mkv','ogv','mp3','m4a','ogg','flac','wav'],ex=x=>x.name.split('.').pop().toLowerCase();
+ const au=((j.metadata||{}).mediatype)==='audio',O=au?['mp3']:['mp4','m4v','webm','mkv','ogv','mp3','m4a','ogg','flac','wav'],ex=x=>x.name.split('.').pop().toLowerCase();
  const f=(j.files||[]).filter(x=>O.includes(ex(x))&&!/_thumb|sample/i.test(x.name)).sort((a,b)=>O.indexOf(ex(a))-O.indexOf(ex(b))||(+b.size||0)-(+a.size||0))[0];
  if(!f)throw new Error('فایل قابل دانلودی برای این مورد پیدا نشد');
  return{url:'https://archive.org/download/'+id+'/'+f.name.split('/').map(encodeURIComponent).join('/'),s:+f.size||0,d:iaT(f.length)}}
@@ -658,7 +659,7 @@ function scanPage(h,base,tt){
 async function page(it,url){
  const L=scanPage(await (await get(it,url)).text(),url);
  if(!L.length)throw new Error('فایل ویدیویی یا صوتی در این صفحه پیدا نشد (برای یوتیوب و مشابه آن در تنظیمات آدرس API لازم است)');
- it.res=L.filter(r=>!REL(r));it.st='idle';sync(it);rr(it,L.length+' فایل در صفحه پیدا شد؛ دکمهٔ ▶ را بزنید؛ دانلود از داخل پخش‌کننده انجام می‌شود')}
+ it.res=L.filter(r=>!REL(r)&&!nm3(r));it.st='idle';sync(it);rr(it,it.res.length+' فایل در صفحه پیدا شد؛ دکمهٔ ▶ را بزنید؛ دانلود از داخل پخش‌کننده انجام می‌شود')}
 const SKIP=/(youtube|youtu\.be|instagram|facebook|twitter|tiktok|aparat|imdb|pinterest|linkedin|google|duckduckgo|mojeek|bing|microsoft|msn)\./i;
 function links(h){
  const L=[];
@@ -858,7 +859,7 @@ async function search(it,t){
  const TR=[].concat(it.en?it.en.split(' / '):[],it.fa?it.fa.split(' / '):[]),VR=V.filter(v=>TR.indexOf(v)<0);
  const pre=F.length?'معادل فارسی: '+F.join(' / ')+'\n':'';
  const fa0=/[\u0600-\u06FF]/.test(q);
- it.sq=q;it.sty=ty;it.au=ha;const NM=['Wikimedia','Archive.org','IPTV','وب و سایت‌ها','Openverse','YouTube Music','YouTube'],NS=NM.length,DN=[],P=[[],[],[],[],[],[],[]];let ok=0,pend=NS,stopped=0;
+ it.sq=q;it.sty=ty;it.au=ha;const NM=['Wikimedia','Archive.org','IPTV','وبسایت‌ها','Openverse','YouTube Music','YouTube'],NS=NM.length,DN=[],P=[[],[],[],[],[],[],[]];let ok=0,pend=NS,stopped=0;
  const DD=()=>{const a=[];if(it.wd)a.push('موتورهای جستجو: '+it.wd.ok+' از '+it.wd.all+' درخواست پاسخ دادند، '+it.wd.l+' لینک نتیجه');const q=dgs(it);if(q)a.push('سایت‌ها: '+q);return a.length?'\n'+a.join('\n'):''};
   const SS=()=>{if(it.only){it.ss=null;return''}it.ss=NM.map((n,i)=>({n:n,v:P[i].length?P[i].length:DN[i]===1?0:DN[i]===2?((i===4||i===5)&&!ty.includes('audio')?'—':'✗'):stopped?'—':null}));return'{S}\n'};
  it.stp=()=>{stopped=1;rr(it,it.sm=pre+SS()+'!جستجو متوقف شد'+(it.res.length?' • '+it.res.length+' مورد پیدا شده':'')+DD())};
@@ -868,7 +869,7 @@ async function search(it,t){
    it.pi=setInterval(()=>{if(it.tk!==tk){clearInterval(it.pi);sp.classList.remove('on');return}
     const e=1-Math.exp(-(Date.now()-t0)/25000);let c=0;for(let i=0;i<NS;i++)c+=DN[i]?1:e*.9;
     sp.querySelector('b').textContent=Math.min(99,Math.floor(c/NS*100))+'%'},300)}}
- const calc=()=>{const sd={},X=[],A=[].concat(...P.map((a,j)=>a.map(r=>(r.d=r.d||['Wikimedia','Archive.org','IPTV','وب و سایت','Openverse','YouTube Music','YouTube'][j],r)))).map((r,i)=>(r.sc=Math.max(rank(r,VR),r.pm?1:0),r.o=i,r)).sort((a,b)=>b.sc-a.sc||a.o-b.o).filter(r=>{if(REL(r)){X.push(r);return 0}const k=r.url||r.ia;if(sd[k])return 0;sd[k]=1;const tt=ty.length>1||(ty[0]==='audio'?r.k==='صوت':r.k!=='صوت');if(!tt)X.push(r);return tt});const th=1;it.skip=X.slice(0,300);it.res=A.filter(r=>r.sc>=th).slice(0,500);it.weak=A.filter(r=>r.sc<th).slice(0,200);pinSrc(it);};
+ const calc=()=>{const sd={},X=[],A=[].concat(...P.map((a,j)=>a.filter(r=>!nm3(r)).map(r=>(r.d=r.d||['Wikimedia','Archive.org','IPTV','وبسایت','Openverse','YouTube Music','YouTube'][j],r)))).map((r,i)=>(r.sc=Math.max(rank(r,VR),r.pm?1:0),r.o=i,r)).sort((a,b)=>b.sc-a.sc||a.o-b.o).filter(r=>{if(REL(r)){X.push(r);return 0}const k=r.url||r.ia;if(sd[k])return 0;sd[k]=1;const tt=ty.length>1||(ty[0]==='audio'?r.k==='صوت':r.k!=='صوت');if(!tt)X.push(r);return tt});const th=1;it.skip=X.slice(0,300);it.res=A.filter(r=>r.sc>=th).slice(0,500);it.weak=A.filter(r=>r.sc<th).slice(0,200);pinSrc(it);};
  const mm=()=>pre+SS()+'!'+(pend?'نتایج تاکنون: '+it.res.length+' مورد':it.res.length?it.res.length+' مورد پیدا شد؛ برای دانلود دکمهٔ ▶ را بزنید':ok?'نتیجه‌ای پیدا نشد'+(ok<NS?'\nاتصال به بعضی سایت‌ها برقرار نشد؛ در تنظیمات پراکسی را تست کنید':''):'جستجو انجام نشد؛ اینترنت یا فیلترشکن را بررسی کنید')+(pend?'':DD());
  let lt=0;const lv=()=>{if(lt)return;lt=setTimeout(function f(){lt=0;if(it.tk!==tk||stopped||!pend)return;if(Date.now()-LT<900){lt=setTimeout(f,400);return}calc();rr(it,it.sm=mm())},650)};
  it.live=(i,a)=>{if(it.tk!==tk||!a||!a.length)return;a.forEach(x=>{x.si=i});P[i]=P[i].concat(a);lv()};
