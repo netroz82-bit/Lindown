@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0b">
+<title>لیندان | Lindown</title>
+<style>
+:root{--o:#ff7a00;--o2:#ffa43a;--bg:#0b0b0b;--c:#171717;--b:#2b2b2b;--t:#f3f3f3;--m:#8f8f8f;--r:#ff5252;--g:#3ddc84}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--t);font:15px/1.7 Tahoma,system-ui,sans-serif}
+body{padding:calc(env(safe-area-inset-top,0px) + 12px) 14px calc(env(safe-area-inset-bottom,0px) + 30px);max-width:640px;margin:0 auto}
+header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+header svg{width:46px;height:46px;flex:none}
+h1{font-size:22px;margin:0;line-height:1.1;color:var(--o)}
+h1 small{display:block;font-size:12px;color:var(--m);font-weight:400}
+.sp{flex:1}
+button{font:inherit;color:var(--t);background:var(--c);border:1px solid var(--b);border-radius:12px;padding:8px 14px;cursor:pointer}
+button:active{transform:scale(.97)}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+.ic{width:42px;height:42px;padding:0;font-size:19px}
+.pri{background:var(--o);color:#111;border:0;font-weight:700}
+textarea,input{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px solid var(--b);border-radius:12px;padding:10px 12px;direction:ltr;text-align:left}
+textarea{height:110px;resize:vertical}
+.row{display:flex;gap:8px;margin:8px 0 18px}
+.row .pri{flex:1;padding:11px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:12px;margin-bottom:10px}
+.nm{font-weight:700;word-break:break-all;direction:ltr;text-align:right;font-size:14px}
+.url{color:var(--m);font-size:11px;direction:ltr;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar{position:relative;height:20px;background:#262626;border-radius:10px;margin:9px 0 6px;overflow:hidden}
+.bar .bp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;line-height:1;color:#fff;direction:ltr;text-shadow:0 0 3px #000,0 0 3px #000,0 1px 2px #000;pointer-events:none}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--o),var(--o2));border-radius:10px;transition:width .2s}
+.bar.ind i{width:35%;animation:s 1.1s linear infinite}
+@keyframes s{from{margin-right:-35%}to{margin-right:100%}}
+@media(prefers-reduced-motion:reduce){.bar.ind i{animation:none;width:100%;opacity:.5}}
+.inf{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--m)}
+.ok{color:var(--g)}.er{color:var(--r)}
+.er{font-size:12.5px;margin:6px 0 0}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.acts button{padding:5px 11px;font-size:13px}
+.empty{text-align:center;color:var(--m);padding:26px 10px;border:1px dashed var(--b);border-radius:14px}
+.fl{display:flex;gap:8px}.fl input{flex:1;min-width:0}.go{min-width:86px;padding:8px 12px}
+.go.stop{background:transparent;color:var(--r);border:1px solid var(--r);font-weight:700}
+.plus{width:100%;font-size:26px;line-height:1;padding:7px;color:var(--o);border:1px dashed var(--o);background:transparent}
+.card[data-st=idle] .bar,.card[data-st=idle] .inf,.card[data-st=idle] .nm,.nm:empty,.er:empty,.acts:empty{display:none}
+.cr{text-align:center;color:var(--m);font-size:12.5px;margin:16px 0 0}
+.cr.ver{margin:6px 0 0;font-size:12px}.cr.ver span{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.res{display:flex;flex-direction:column;gap:6px;margin-top:10px;max-height:min(60vh,460px);overflow:auto;overscroll-behavior:contain}.res:empty{display:none}
+.res button{display:block;width:100%;text-align:right;padding:8px 12px}
+.rt{display:block;font-weight:700;font-size:13px;word-break:break-all;unicode-bidi:plaintext;text-align:start}
+.rm{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--m)}
+.iw{position:relative;flex:1;min-width:0}.iw input{padding-right:42px}
+.cl{display:none;position:absolute;right:7px;top:7px;width:30px;height:30px;padding:0;border-radius:50%;background:#2a2a2a;color:var(--t);font-size:19px;line-height:1}
+.iw.has .cl{display:block}
+.bd{padding:0 9px;border-radius:20px;font-size:11.5px;border:1px solid}
+.vd{color:var(--o);border-color:var(--o)}.au{color:#5ec8ff;border-color:#5ec8ff}.st{color:var(--m);border-color:var(--m)}
+.rw{display:flex;gap:6px;align-items:stretch;cursor:pointer}.res div.dl{padding:8px 12px;background:var(--c);border:1px solid var(--b);border-radius:12px;text-align:right}.res .dl{flex:1;min-width:0;width:auto}.res .pb{flex:none;display:flex;align-items:center;gap:4px;align-self:center}
+.res .pp{flex:none;width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;background:#202020;border:1px solid var(--b);color:var(--o);transition:transform .12s}
+.res .pp svg{width:17px;height:17px;fill:currentColor;display:block}
+.res .pp.dn{background:var(--o);border-color:var(--o);color:#111}
+.res .pp:active{transform:scale(.9)}
+.pl{scroll-margin-top:10px;display:none;margin-top:10px;background:#0f0f0f;border:1px solid var(--b);border-radius:12px;padding:8px}.pl.on{display:block}
+.pl video{display:block;width:100%;max-height:220px;background:#000;border-radius:8px}
+.pt{font-size:12.5px;color:var(--m);margin:6px 2px;direction:ltr;text-align:left;word-break:break-all}
+.pc{display:flex;align-items:center;gap:8px;direction:ltr}.pc button{flex:none;width:38px;height:38px;padding:0}.pq{color:var(--r)}
+.sk{flex:1;min-width:0;padding:0;border:0;background:none;accent-color:var(--o);height:28px}
+.tm{font-size:11.5px;color:var(--m);min-width:78px;text-align:center}
+.sw{display:flex;align-items:center;gap:10px}.sw input{width:22px;height:22px;padding:0;accent-color:var(--o)}
+.pd{color:var(--o)}.dls:empty{display:none}
+.job{margin:10px 0 0;background:#101010;border-color:#333}
+.ru{display:block;font-size:11px;color:var(--m);direction:ltr;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0}
+.pl.fs{position:fixed;inset:0;z-index:30;margin:0;padding:0;border:0;border-radius:0;background:#000;display:flex}
+.pl.fs video{width:100%;height:100%;max-height:none;object-fit:contain;border-radius:0}
+.pl.fs.rot{inset:auto;top:0;left:100vw;width:100vh;height:100vw;transform:rotate(90deg);transform-origin:0 0}
+.pl.fs .pt,.pl.fs .pc{position:absolute;left:0;right:0;z-index:2;margin:0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.pl.fs .pt{top:0;transform:translateY(-100%);padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 26px;color:#fff;background:linear-gradient(#000c,transparent)}
+.pl.fs .pc{bottom:0;transform:translateY(100%);padding:26px 12px calc(env(safe-area-inset-bottom,0px) + 10px);background:linear-gradient(transparent,#000d)}
+.pl.fs.ui .pt,.pl.fs.ui .pc{opacity:1;pointer-events:auto;transform:none}
+.tg{display:block;width:100%;margin:6px 0;padding:6px 12px;color:var(--o);background:transparent;border:1px dashed #444;font-size:13px;text-align:center}
+.dls.cl2 .job{display:none}
+.spn{display:none;align-items:center;gap:12px;margin:10px 0;color:var(--m);font-size:13px}.spn.on{display:flex}
+.rg{position:relative;width:54px;height:54px;flex:none}
+.rg i{position:absolute;inset:0;border:4px solid #2b2b2b;border-top-color:var(--o);border-radius:50%;animation:rot 1s linear infinite}
+.rg b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--o);font-size:13px}
+@keyframes rot{to{transform:rotate(360deg)}}
+#set{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:flex-end;z-index:9}
+#set.on{display:flex}
+#set>div{background:#121212;border-top:2px solid var(--o);border-radius:20px 20px 0 0;padding:18px 16px calc(env(safe-area-inset-bottom,0px) + 18px);width:100%;max-width:640px;margin:0 auto;max-height:90%;overflow:auto}
+label{display:block;margin:12px 0 4px;font-weight:700}
+.h{font-size:12px;color:var(--m);margin:4px 0 0}
+p.h[data-hp]{display:none}p.h[data-hp].on{display:block}
+.ib{display:inline-grid;place-items:center;flex:none;width:20px;height:20px;margin-inline-start:8px;border-radius:50%;border:1px solid var(--o);color:var(--o);font:italic 700 12px/1 Georgia,serif;cursor:pointer;vertical-align:middle;user-select:none}
+.ib.on{background:var(--o);color:#111}
+.rw.np .dl{border-color:var(--o);box-shadow:0 0 0 1px var(--o) inset;background:rgba(255,122,0,.1)}.rw.np .rt::before{content:'▶ ';color:var(--o)}
+#toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);left:50%;transform:translateX(-50%);background:var(--o);color:#111;padding:8px 18px;border-radius:30px;font-weight:700;display:none;z-index:40;max-width:90%;text-align:center}
+.mt{display:flex;gap:10px;direction:ltr;white-space:nowrap;flex:none}.mt .uk{opacity:.7}
+.rw.wk{opacity:.5}
+.tabs{display:flex;gap:6px;position:sticky;top:0;z-index:2;background:var(--c);padding:2px 0 6px}
+.res .tabs button{flex:1;width:auto;text-align:center;padding:6px 4px;font-size:12.5px;border-radius:20px;white-space:nowrap}
+.res .tabs button.on{background:var(--o);color:#111;border-color:var(--o);font-weight:700}
+.sx{margin:2px 0 4px;font-size:12px;color:var(--m);line-height:1.7}
+.sx .ml{margin:2px 0}.sx .sm{color:var(--t);font-size:13px;font-weight:700}
+.chs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}
+.chs>span{display:inline-flex;align-items:center;gap:6px;padding:1px 10px;border:1px solid var(--b);border-radius:20px;font-size:11.5px;white-space:nowrap;color:var(--m)}
+.chs b{font-weight:700}
+.chs .ok{color:var(--g);border-color:var(--g)}.chs .no{color:var(--r);border-color:var(--r)}.chs>span[data-s]{cursor:pointer}.chs>span.sel{background:var(--o);border-color:var(--o);color:#111}
+.dt{display:inline-block;direction:ltr;letter-spacing:1px}
+.dt i{font-style:normal;opacity:.2;animation:dt 1.2s infinite}
+.dt i:nth-child(2){animation-delay:.2s}.dt i:nth-child(3){animation-delay:.4s}
+@keyframes dt{0%,80%,100%{opacity:.2}40%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.dt i{animation:none;opacity:1}}
+.qp{display:none;direction:rtl}.pl.yt .qp{display:block}
+.pl.yt:not(.pv) video,.pl.yt:not(.pv) .pc{display:none!important}
+.qn{font-size:11.5px;color:var(--m);margin:4px 2px;text-align:right}
+.qc{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.qc button{padding:5px 12px;font-size:13px;border-radius:20px}
+.qc button.on{background:var(--o);color:#111;border-color:var(--o);font-weight:700}
+.qa{display:flex;gap:8px;margin:6px 0}.qa .pri{flex:1}
+select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px solid var(--b);border-radius:12px;padding:10px 12px}
+.lh{position:sticky;top:0;z-index:2;background:var(--c);padding-bottom:2px}
+.res .lh .tabs{position:static;padding:0 0 4px}
+.res .lh>.tg{margin:0 0 4px;padding:3px 12px;text-align:center;font-size:12.5px}
+.rws{display:flex;flex-direction:column;gap:6px}
+.res.col{max-height:none;overflow:visible}
+.res.col>.rws,.res.col .tabs,.res.col>.tg[data-m],.res.col>.rm,.res.col>button[data-w],.res.col>button[data-x]{display:none}
+.th{flex:none;width:80px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:#222;align-self:center}
+.yv{display:none}.pl.yt .yv{display:block}
+.yv iframe{display:block;width:100%;aspect-ratio:16/9;max-height:230px;border:0;border-radius:8px;background:#000}
+.qa{flex-wrap:wrap}
+.ys{font-size:12.5px;color:var(--m);margin:6px 2px;line-height:1.8}.ys .qa{margin:8px 0 0}
+.pl.fs .qp{display:none!important}
+.pl.fs video{flex:1 1 auto;min-width:0}
+.pc{flex-wrap:wrap}.pc .tm{flex:1}
+.sk{order:-1;flex:1 1 100%;width:100%;height:44px;margin:0;-webkit-appearance:none;appearance:none;background:transparent;touch-action:pan-y}
+.sk::-webkit-slider-runnable-track{height:12px;border-radius:6px;background:linear-gradient(to right,var(--o) var(--p,0%),#4a4a4a var(--p,0%))}
+.sk::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-9px;border-radius:50%;background:var(--o);box-shadow:0 0 0 3px #fff}
+.sk::-moz-range-track{height:12px;border-radius:6px;background:#4a4a4a}.sk::-moz-range-progress{height:12px;border-radius:6px;background:var(--o)}
+.sk::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:50%;background:var(--o);box-shadow:0 0 0 3px #fff}
+.pl.fs .sk{height:56px}
+.pl.fs .sk::-webkit-slider-runnable-track{height:18px;border-radius:9px}
+.pl.fs .sk::-webkit-slider-thumb{width:40px;height:40px;margin-top:-11px}
+.pl.fs .sk::-moz-range-track,.pl.fs .sk::-moz-range-progress{height:18px;border-radius:9px}
+.pl.fs .sk::-moz-range-thumb{width:36px;height:36px}
+
+.qp .qa{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 6px}
+.qp .qa .pri{grid-column:1/-1;padding:13px;font-size:16px;border-radius:14px;box-shadow:0 4px 14px #ff7a0033}
+.qp .qa button:not(.pri),.ys .qa button:not(.pri){display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:8px 6px;font-size:13px;line-height:1.3;text-align:center;border-radius:14px;background:linear-gradient(#202020,#161616);border:1px solid #343434;transition:background .15s,color .15s,border-color .15s}
+.qp [data-qs]::before{content:'▶';color:var(--o)}.qp [data-qo]::before{content:'↗';color:var(--o)}.qp [data-qx]{color:var(--r)}.qp [data-qx]::before{content:'✕'}
+.qa button:not(.pri):active,.qa button:not(.pri).hit,.qc button:active{background:var(--o);color:#111;border-color:var(--o);font-weight:700}
+.qa button:not(.pri):active::before,.qa button:not(.pri).hit::before{color:#111}
+.qa .pri:active,.qa .pri.hit{background:var(--o2);box-shadow:0 0 0 3px #ff7a0055}
+
+.qp .qa .pri{display:flex;align-items:center;justify-content:center;gap:8px}.qa .pri svg{width:20px;height:20px;fill:currentColor;flex:none}
+.pc .pd{display:grid;place-items:center;border-radius:50%;background:var(--o);border-color:var(--o);color:#111}.pc .pd svg{width:19px;height:19px;fill:currentColor;display:block}
+</style>
+</head>
+<body>
+<header>
+<svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#0b0b0b" stroke="#ff7a00" stroke-width="3"/><circle cx="50" cy="50" r="33" fill="#ff7a00"/><path d="M44 28h12v22h10L50 68 34 50h10z" fill="#0b0b0b"/><rect x="31" y="74" width="38" height="5" rx="2.5" fill="#0b0b0b"/></svg>
+<h1>لیندان<small>Lindown</small></h1>
+<span class="sp"></span>
+<button class="ic" id="bset" aria-label="تنظیمات">⚙</button>
+</header>
+
+<div id="list"></div>
+<button class="plus" id="bplus" aria-label="افزودن فیلد جدید">+</button>
+
+<div id="set"><div>
+<b style="font-size:17px;color:var(--o)">تنظیمات</b>
+<label class="sw"><input type="checkbox" id="pxon"><span>پروکسی خودکار</span><span class="ib" role="button" tabindex="0" aria-label="راهنما" data-h="hp1">i</span></label>
+<p class="h" id="hp1" data-hp>وقتی سرور اجازه دسترسی مستقیم ندهد، برنامه خودکار از پروکسی‌های عمومی استفاده می‌کند و اگر یکی خراب شود به پروکسی فعال‌تر می‌رود. توجه: لینک‌ها از سرویس‌های واسط عبور می‌کنند.</p>
+<label class="sw"><input type="checkbox" id="ppon"><span>پراکسی شخصی</span><span class="ib" role="button" tabindex="0" aria-label="راهنما" data-h="hp2">i</span></label>
+<input id="pp" dir="ltr" autocomplete="off" placeholder="https://xxxx.workers.dev/">
+<div class="row" style="margin:6px 0 0"><button id="ppt" type="button" style="flex:1">تست پراکسی شخصی</button></div><p class="h" id="ppr"></p>
+<p class="h" id="hp2" data-hp>اگر Worker رایگان Cloudflare ساخته‌ای، آدرسش را اینجا بگذار. برنامه درخواست‌ها را اول از همین مسیر می‌فرستد و بعد سراغ پراکسی‌های عمومی می‌رود.</p>
+<label class="sw" style="margin-top:12px"><input type="checkbox" id="apion"><span>API لینک‌های صفحه‌ای (اختیاری)</span><span class="ib" role="button" tabindex="0" aria-label="راهنما" data-h="hp3">i</span></label>
+<input id="api" placeholder="https://your-cobalt-server/">
+<p class="h" id="hp3" data-hp>به‌صورت پیش‌فرض فعال است و برای دانلود از یوتیوب، اینستاگرام و مانند آن استفاده می‌شود. با خاموش کردن کلید بالا فقط لینک‌های فایل و m3u8 دانلود می‌شوند.</p>
+<label for="yq" style="margin-top:12px;display:block">کیفیت پیش‌فرض دانلود ویدیو از یوتیوب<span class="ib" role="button" tabindex="0" aria-label="راهنما" data-h="hp4">i</span></label><select id="yq"><option value="best">بهترین کیفیت</option><option value="1080p">1080p</option><option value="720p">720p</option><option value="480p">480p (پیش‌فرض)</option><option value="360p">360p</option><option value="audio">فقط صدا (MP3)</option></select>
+<p class="h" id="hp4" data-hp>برای هر ویدیوی یوتیوب می‌توانید هنگام دانلود کیفیت را جداگانه انتخاب کنید. فایل‌های صوتی همیشه با بالاترین کیفیت ممکن دانلود می‌شوند و تنظیم کیفیت ندارند. دانلود از یوتیوب به API فعال نیاز دارد.</p>
+<label for="dm" style="margin-top:12px;display:block">روش ذخیرهٔ فایل<span class="ib" role="button" tabindex="0" aria-label="راهنما" data-h="hp5">i</span></label><select id="dm"><option value="">خودکار</option><option value="n">دانلودر دستگاه</option><option value="b">داخل برنامه (Blob)</option><option value="x">مرورگر سیستم (اگر خطای «Permission not granted» آمد)</option></select>
+<p class="h" id="hp5" data-hp>اگر هنگام دانلود پیام «Permission not granted. Download failed» دیدید، این گزینه را «مرورگر سیستم» بگذارید و ذخیره کنید؛ فایل با مرورگر گوشی دانلود می‌شود.</p>
+<label for="dlr" style="margin-top:12px;display:block">مسیر دانلود فایل<span class="ib" role="button" tabindex="0" aria-label="راهنما" data-h="hp6">i</span></label><select id="dlr"><option value="dir">مستقیم از سایت (پیشنهادی؛ بدون فیلترشکن هم کار می‌کند)</option><option value="px">از طریق پراکسی شخصی</option></select>
+<p class="h" id="hp6" data-hp>در حالت مستقیم نام فایل همان نام سایت است. اگر دانلودی با فیلترشکن روشن مستقیم باز نشد، روی کارت دانلود «دانلود با پراکسی» را بزنید.</p>
+<div class="row"><button id="scl" style="flex:1">بستن</button><button class="pri" id="ssv">ذخیره</button></div>
+<p class="cr">طراحی شده توسط استاد جلالی</p>
+<p class="cr ver">نسخه برنامه: <span id="ver" dir="ltr"></span></p>
+</div></div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+/* نسخهٔ برنامه = سال(۲رقم).ماه.روز.ساعت.دقیقه (میلادی، بدون صفر ابتدایی) — با هر بار تولید فایل جدید به‌روز می‌شود */
+const VER='26.11.4.11.46';$('#ver').textContent=VER;
+const DEFSITES='nex1music.ir\nmusicdel.ir\navamovie.ir\ndownloadha.com\ndigimoviez.com\nuptvs.com\ngisomusic.com\nbehplay.com\nbehtaraneh.com\naftabmusic.com\nshabamusic.com\ngitarmuzic.com\nmusicrooz.com\nzardis.net\nremiixbaz.com\ntfilm12.ir\nbandmoviez.one\nnetpaak.ir';
+const DEFPP='https://royal-mode-d4ce.netroz82.workers.dev/';
+const DEFAPI='https://save.brianrianrehan.com/api/v1/download';
+let S={api:'',px:true};
+try{Object.assign(S,JSON.parse(localStorage.getItem('lindown')||'{}'))}catch(e){}
+if(!S.pp)S.pp=DEFPP;if(S.ppon===undefined)S.ppon=true;
+if(!S.api)S.api=DEFAPI;if(S.apion===undefined)S.apion=true;if(!S.yqv){S.yq='480p';S.yqv=1}if(!S.yq)S.yq='480p';
+const API=()=>S.apion!==false?S.api:'';
+const items=[];let seq=0;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dots=s=>esc(s).replace(/\.\.\.|…/g,'<span class="dt"><i>.</i><i>.</i><i>.</i></span>');
+const fmt=n=>n<1024?n+' B':n<1048576?(n/1024).toFixed(1)+' KB':n<1073741824?(n/1048576).toFixed(1)+' MB':(n/1073741824).toFixed(2)+' GB';
+const spd=(g,t)=>fmt(g/Math.max(.5,(Date.now()-t)/1000))+'/s';
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2600)}
+
+const EXT={'video/mp4':'.mp4','video/webm':'.webm','video/x-matroska':'.mkv','video/quicktime':'.mov','video/mp2t':'.ts','audio/mpeg':'.mp3','audio/mp4':'.m4a','audio/aac':'.aac','application/pdf':'.pdf','image/jpeg':'.jpg','image/png':'.png','image/gif':'.gif'};
+function nameFrom(u,ct,cd){
+ let n='',m;
+ if(cd){m=/filename\*=UTF-8''([^;]+)/i.exec(cd)||/filename="?([^";]+)"?/i.exec(cd);if(m){try{n=decodeURIComponent(m[1])}catch(e){n=m[1]}}}
+ if(!n){try{n=decodeURIComponent(new URL(u).pathname.split('/').pop())}catch(e){}}
+ n=n.replace(/[\\/:*?"<>|]+/g,'_').trim();
+ if(!/\.[a-z0-9]{2,5}$/i.test(n))n=(n||'lindown-'+Date.now())+(EXT[(ct||'').split(';')[0].trim()]||'.mp4');
+ return n}
+
+let NOSIG=false;
+async function fx(it,t,o){
+ o=o||{};
+ if(!NOSIG){
+  try{return await fetch(t,Object.assign({signal:it.ac.signal},o))}
+  catch(e){if(!/clone/i.test(e&&e.message||''))throw e;NOSIG=true}
+ }
+ const r=await fetch(t,o);
+ if(it.ac.signal.aborted)throw new Error('abort');
+ return r}
+const PXL=[
+ {f:u=>'https://corsproxy.io/?url='+encodeURIComponent(u)},
+ {f:u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u)},
+ {f:u=>'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(u)},
+ {f:u=>'https://thingproxy.freeboard.io/fetch/'+u},
+ {f:u=>'https://yacdn.org/proxy/'+u}
+].map(p=>Object.assign(p,{ok:0,bad:0,t:0})),NC={};
+const cool=p=>p.bad&&Date.now()-p.t<(p.bad>1?900000:180000)?1:0;
+const PPM=[(b,e)=>b+(b.indexOf('?')>-1?'&':'?')+'url='+e,(b,e)=>b+(b.indexOf('?')>-1?'&':'?')+'u='+e,(b,e)=>b+(b.indexOf('?')>-1?'&':'?')+'target='+e,(b,e,u)=>b.replace(/\/?$/,'/')+u,(b,e)=>b.replace(/\/?$/,'/')+e];
+const PP={f:u=>PPM[S.ppm||0](S.pp,encodeURIComponent(u),u),ok:1e9,bad:0,t:0};
+const pxs=()=>{
+ const L=S.px===false?[]:PXL.filter(p=>!cool(p)).sort((a,b)=>b.ok-a.ok||a.bad-b.bad);
+ return S.pp&&S.ppon!==false?(cool(PP)?L:[PP].concat(L)):L};
+const try1=(it,u,ms)=>Promise.race([fx(it,u),new Promise((_,j)=>setTimeout(()=>j(new Error('timeout')),ms))]);
+/* حافظهٔ وضعیت شبکه: سایت یا پراکسی‌ای که جواب نداده تا مدتی دوباره صدا زده نمی‌شود (خطای SSL کمتر، جستجوی سریع‌تر) */
+const NET={nc:{},dead:{}};
+try{const x=JSON.parse(localStorage.getItem('lindownNet')||'{}'),n=Date.now();
+ Object.keys(x.nc||{}).forEach(h=>{if(n-x.nc[h]<21600000){NET.nc[h]=x.nc[h];NC[h]=1}});
+ Object.keys(x.dead||{}).forEach(h=>{if(n-x.dead[h]<600000)NET.dead[h]=x.dead[h]});
+ (x.px||[]).forEach((a,i)=>{if(PXL[i]&&Array.isArray(a)&&n-a[1]<900000){PXL[i].bad=a[0];PXL[i].t=a[1];PXL[i].ok=a[2]||0}})}catch(e){}
+const netSave=()=>{try{NET.px=PXL.map(p=>[p.bad,p.t,p.ok]);localStorage.setItem('lindownNet',JSON.stringify(NET))}catch(e){}};
+const netReset=()=>{NET.nc={};NET.dead={};for(const k in NC)delete NC[k];PP.bad=0;PP.t=0;PXL.forEach(p=>{p.bad=0;p.t=0});netSave()};
+setInterval(netSave,5000);
+let HID=0;document.addEventListener('visibilitychange',()=>{if(document.hidden){HID=Date.now();netSave()}else if(HID&&Date.now()-HID>15000){netReset();HID=0}});
+window.addEventListener('online',netReset);
+let LT=0;document.addEventListener('touchstart',()=>{LT=Date.now()},{passive:true});document.addEventListener('scroll',()=>{LT=Date.now()},{passive:true,capture:true});
+async function get(it,url){
+ let H='',err;try{H=new URL(url).host}catch(e){}
+ const on=S.px!==false||!!(S.pp&&S.ppon!==false);
+ if(it.sr&&H&&NET.dead[H]&&Date.now()-NET.dead[H]<600000)throw new Error('unreachable');
+ if(it.sr&&on&&H&&!NC[H]&&S.pp&&S.ppon!==false&&!cool(PP)){
+  try{const r=await try1(it,PP.f(url),9000);if(r.ok){NC[H]=1;NET.nc[H]=Date.now();return r}}
+  catch(e){if(it.ac.signal.aborted)throw e}
+ }
+ if(!(on&&NC[H])){
+  try{const r=await try1(it,url,it.sr?12000:45000);if(r.ok)return r;throw new Error('HTTP '+r.status)}
+  catch(e){if(it.ac.signal.aborted||/^HTTP/.test(e.message)||!on)throw e;err=e}
+ }
+ for(const p of pxs().slice(0,it.sr?3:4)){
+  try{const r=await try1(it,p.f(url),it.sr?9000:15000);if(r.ok){p.ok++;p.bad=0;NC[H]=1;NET.nc[H]=Date.now();return r}
+   if(r.status===404||r.status===410){NC[H]=1;NET.nc[H]=Date.now();const e=new Error('HTTP '+r.status);e.site=1;throw e}
+   p.bad++;p.t=Date.now();err=new Error('HTTP '+r.status)}
+  catch(e){if(it.ac.signal.aborted||e.site)throw e;p.bad++;p.t=Date.now();err=e}
+ }
+ delete NC[H];delete NET.nc[H];if(it.sr&&H)NET.dead[H]=Date.now();throw err||new Error('unreachable')}
+
+function setP(it,pct,txt,sp){it.pct=pct;it.txt=txt;it.sp=sp||'';if(it.onp)it.onp(txt,sp||'');sync(it)}
+
+const BIGL=60*1048576;
+function wvDet(){var u=navigator.userAgent||'';if(S.dm==='n'||S.dm==='x')return true;if(S.dm==='b')return false;return /; wv\)/.test(u)||/^file:\/\/\/android_asset/i.test(location.href)||(/Android/.test(u)&&/Version\/\d/.test(u)&&/Chrome\//.test(u)&&!/SamsungBrowser|EdgA|OPR\//.test(u))}
+let WVU=wvDet();
+async function ppAlive(){
+ if(!(S.pp&&S.ppon!==false))return false;
+ if(PP.bad&&Date.now()-PP.t<600000)return false;
+ try{const r=await Promise.race([fetch(PP.f('https://example.com/')),new Promise((_,j)=>setTimeout(()=>j(0),6000))]);const x=await r.text();if(r.ok&&/Example Domain/i.test(x)){PP.bad=0;return true}}catch(e){}
+ PP.bad=1;PP.t=Date.now();return false}
+async function pxOk(it){
+ if(!(it&&it.vp?it.vp==='px':S.dlr==='px'))return true;
+ if(await ppAlive())return true;
+ it.vp='dir';toast('پراکسی بدون فیلترشکن در دسترس نیست؛ دانلود مستقیم انجام شد. اگر شروع نشد «دانلود با مرورگر سیستم» را بزنید');return false}
+function hoUrl(url,nm,it){const px=(it&&it.vp?it.vp==='px':S.dlr==='px')&&!(PP.bad&&Date.now()-PP.t<600000);let h=url;if(px&&S.pp&&S.ppon!==false){h=PP.f(url);if((S.ppm||0)<3)h+='&dl=1&name='+encodeURIComponent(nm)}return h}
+async function direct(it,url){
+ if(WVU&&/^https?:/i.test(url)&&FILE_RE.test(url)){const nm=lname(nameFrom(url,'',''));it.name=nm;await pxOk(it);it.dlu=hoUrl(url,nm,it);nat(it,it.dlu);return}
+ let r;try{r=await get(it,url)}catch(e){if(WVU&&/^https?:/i.test(url)&&!it.ac.signal.aborted){const nm=lname(nameFrom(url,'',''));it.name=nm;await pxOk(it);it.dlu=hoUrl(url,nm,it);nat(it,it.dlu);return}throw e}
+ const ct=r.headers.get('content-type')||'';
+ if(/text\/html/i.test(ct)){try{r.body&&r.body.cancel()}catch(e){}throw new Error('PAGE')}
+ if(WVU&&/^https?:/i.test(url)){try{r.body&&r.body.cancel()}catch(e){}const nm=lname(nameFrom(url,ct,r.headers.get('content-disposition')));it.name=nm;await pxOk(it);it.dlu=hoUrl(url,nm,it);nat(it,it.dlu);return}
+ const total=+r.headers.get('content-length')||0;
+ if(total>BIGL){try{r.body&&r.body.cancel()}catch(e){}throw new Error('BIG')}
+ it.name=it.fname||nameFrom(url,ct,r.headers.get('content-disposition'));
+ if(!r.body){finish(it,await r.blob());return}
+ const rd=r.body.getReader(),parts=[],t0=Date.now();let got=0;
+ for(;;){
+  const x=await rd.read();if(it.ac.signal.aborted){rd.cancel();throw new Error('abort')}if(x.done)break;
+  parts.push(x.value);got+=x.value.length;if(got>BIGL){rd.cancel();throw new Error('BIG')}
+  setP(it,total?got/total*100:-1,fmt(got)+(total?' / '+fmt(total):''),spd(got,t0));
+ }
+ finish(it,new Blob(parts,{type:ct||'application/octet-stream'}))}
+
+async function hls(it,url){
+ const ab=(u,b)=>new URL(u,b).href;
+ let txt=await (await get(it,url)).text(),base=url;
+ if(!/#EXT-X-(TARGETDURATION|STREAM-INF)/.test(txt)&&(txt.match(/^#EXTINF/mg)||[]).length>1){plist(it,txt,url,it.q||'');return}
+ if(txt.indexOf('#EXT-X-STREAM-INF')>-1){
+  const L=txt.split(/\r?\n/);let best=-1,bu='';
+  for(let i=0;i<L.length;i++){
+   if(L[i].indexOf('#EXT-X-STREAM-INF')===0){
+    const m=/BANDWIDTH=(\d+)/.exec(L[i]),n=L.slice(i+1).find(x=>x.trim()&&x[0]!=='#'),bw=m?+m[1]:0;
+    if(n&&bw>best){best=bw;bu=ab(n.trim(),url)}
+   }
+  }
+  if(!bu)throw new Error('پلی‌لیست نامعتبر است');
+  base=bu;txt=await (await get(it,bu)).text();
+ }
+ if(/#EXT-X-KEY:METHOD=(?!NONE)/.test(txt))throw new Error('این استریم رمزگذاری شده است و قابل دانلود نیست');
+ const segs=txt.split(/\r?\n/).filter(x=>x.trim()&&x[0]!=='#').map(x=>ab(x.trim(),base));
+ if(!segs.length)throw new Error('قطعه‌ای در پلی‌لیست پیدا نشد');
+ const mp=/#EXT-X-MAP:URI="([^"]+)"/.exec(txt);
+ let init=null;if(mp)init=await (await get(it,ab(mp[1],base))).arrayBuffer();
+ const out=new Array(segs.length),t0=Date.now();let i=0,done=0,bytes=0;
+ const w=async()=>{
+  while(i<segs.length){
+   if(it.ac.signal.aborted)throw new Error('abort');const k=i++;let tries=0;
+   for(;;){
+    try{out[k]=await (await get(it,segs[k])).arrayBuffer();break}
+    catch(e){if(it.ac.signal.aborted||++tries>2)throw e}
+   }
+   done++;bytes+=out[k].byteLength;
+   setP(it,done/segs.length*100,done+' از '+segs.length+' قطعه • '+fmt(bytes),spd(bytes,t0));
+  }
+ };
+ await Promise.all([w(),w(),w(),w()]);
+ let nm=it.fname||nameFrom(url,'','').replace(/\.m3u8?$/i,'');
+ if(/^(index|playlist|master|chunklist|main)$/i.test(nm)||!nm)nm='lindown-'+Date.now();
+ it.name=nm.replace(/\.(mp4|ts)$/i,'')+(mp?'.mp4':'.ts');
+ finish(it,new Blob(init?[init].concat(out):out,{type:mp?'video/mp4':'video/mp2t'}))}
+
+async function tg(it,url){
+ const m=/(?:t|telegram)\.me\/(?:s\/)?([A-Za-z0-9_]+)\/(\d+)/.exec(url);
+ if(!m||m[1]==='c')throw new Error('فقط پست کانال‌های عمومی به شکل t.me/نام‌کانال/شماره پشتیبانی می‌شود');
+ setP(it,-1,'در حال خواندن پست تلگرام...');
+ let h;
+ try{h=await (await get(it,'https://t.me/'+m[1]+'/'+m[2]+'?embed=1&mode=tme')).text()}
+ catch(e){if(it.ac.signal.aborted)throw e;throw new Error('خواندن پست تلگرام ممکن نشد؛ پروکسی‌های خودکار جواب ندادند یا غیرفعال هستند. در تنظیمات پروکسی خودکار را فعال کنید یا ویدیو را از خود تلگرام ذخیره کنید')}
+ const v=/<video[^>]+src="([^"]+)"/i.exec(h)||/<source[^>]+src="([^"]+)"/i.exec(h);
+ if(!v)throw new Error('ویدیویی در این پست پیدا نشد. پست ویدیو ندارد، کانال خصوصی است یا حجم ویدیو زیاد است');
+ await direct(it,v[1].replace(/&amp;/g,'&'))}
+
+function fk(o,ks,d){
+ d=d||0;if(!o||typeof o!=='object'||d>3)return '';
+ for(const k of ks)if(typeof o[k]==='string'&&o[k])return o[k];
+ for(const v of Object.values(o)){const r=fk(v,ks,d+1);if(r)return r}
+ return ''}
+function fnum(o,ks,d){
+ d=d||0;if(!o||typeof o!=='object'||d>3)return -1;
+ for(const k of ks){const v=o[k];if(typeof v==='number'&&isFinite(v)&&v>=0)return v;if(typeof v==='string'&&/^\d+(\.\d+)?%?$/.test(v))return parseFloat(v)}
+ for(const v of Object.values(o)){const r=fnum(v,ks,d+1);if(r>=0)return r}
+ return -1}
+let WDM=0;
+async function wdFx(it,u,o){const L=[u];if(S.pp&&S.ppon!==false)L.push(PP.f(u));L.push('https://corsproxy.io/?url='+encodeURIComponent(u));let err;
+ for(let k=0;k<L.length;k++){const i=(WDM+k)%L.length;
+  try{const r=await fx(it,L[i],o);if(i>0&&!r.ok&&![202,400,429].includes(r.status)){err=new Error('HTTP '+r.status);continue}WDM=i;return r}
+  catch(e){if(it.ac.signal.aborted)throw e;err=e}}
+ throw err}
+async function wdGet(it,url,qv){
+ const base=S.api.replace(/\/api\/v1\/.*$/,'').replace(/\/$/,''),DK=['downloadUrl','download_url','fileUrl','file_url','signedUrl','signed_url'],SK2=['statusUrl','status_url','pollUrl'],IK=['downloadId','download_id','jobId','job_id','id'];
+ let r;
+ try{const au=qv==='audio',post=b=>wdFx(it,base+'/api/v1/download',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});
+  r=await post(au?{url:url,format:'audio',quality:'best',outputFormat:'mp3'}:{url:url,format:'video',quality:qv,outputFormat:'mp4'});
+  if((r.status===400||r.status===500)&&(au||qv!=='best')){r=await post(au?{url:url,format:'audio',quality:'best'}:{url:url,format:'video',quality:'best',outputFormat:'mp4'});if(r.ok||r.status===202)toast(au?'سرور خروجی MP3 را نپذیرفت؛ فرمت پیش‌فرض سرور استفاده شد':'کیفیت انتخابی پشتیبانی نشد؛ بهترین کیفیت دانلود می‌شود')}}
+ catch(e){if(it.ac.signal.aborted)throw e;throw new Error('اتصال به سرور API برقرار نشد'+(e&&e.message&&!/failed to fetch|load failed|networkerror/i.test(e.message)?' ('+e.message+')':' (احتمالاً CORS)'))}
+ let j={};try{j=await r.json()}catch(e){}
+ const raw=JSON.stringify(j).slice(0,240);
+ if(r.status===429)throw new Error('محدودیت تعداد درخواست سرور؛ کمی بعد دوباره امتحان کنید');
+ if(r.status===400)throw new Error('این لینک یا سایت توسط سرور پشتیبانی نمی‌شود: '+raw);
+ if(!r.ok&&r.status!==202)throw new Error('خطای سرور API ('+r.status+'): '+raw+(r.status===500?' — مشکل از سمت سرور است نه برنامه؛ بعداً یا با ویدئوی دیگر امتحان کنید':''));
+ const st0=fk(j,['status','state']);let dl=!st0||st0==='completed'?fk(j,DK):'';const id=fk(j,IK);let su=fk(j,SK2);
+ su=su?(x=>base+x.pathname+x.search)(new URL(su,base+'/')):(id?base+'/api/v1/download/'+encodeURIComponent(id):'');
+ let sp=-1;
+ for(let i=0;i<60&&!dl&&su;i++){
+  await new Promise(x=>setTimeout(x,2000));
+  if(it.ac.signal.aborted)throw new Error('abort');
+  setP(it,sp,sp>=0?'در حال پردازش روی سرور...':'در صف پردازش سرور...',(i*2)+' ثانیه');
+  const k=await (await wdFx(it,su,{})).json(),st=fk(k,['status','state']);
+  {let p=fnum(k,['progress','percent','percentage']);if(p>0&&p<1)p*=100;if(p>=0&&p<=100)sp=p}
+  if(st==='failed')throw new Error('پردازش سرور ناموفق بود: '+JSON.stringify(k).slice(0,200));
+  if(st==='completed')dl=fk(k,DK)||fk(k,['url']);
+ }
+ if(!dl)throw new Error('سرور لینک دانلود نداد. پاسخ سرور: '+raw);
+ return new URL(dl,base+'/').href}
+async function wdDl(it,u,hint){
+ setP(it,-1,'در حال دریافت فایل...');
+ let r;try{r=await try1(it,u,25000)}catch(e){if(it.ac.signal.aborted)throw e;return false}
+ const ct=r.headers.get('content-type')||'',cd=r.headers.get('content-disposition'),total=+r.headers.get('content-length')||0;
+ if(!r.ok||!r.body||/text\/html/i.test(ct)||total>BIGL){try{r.body&&r.body.cancel()}catch(e){}return false}
+ let nm=nameFrom(u,ct,cd);if(hint&&!cd){const m=/\.[a-z0-9]{2,5}$/i.exec(nm);nm=hint+(m?m[0]:'.mp4')}
+ const rd=r.body.getReader(),parts=[],t0=Date.now();let got=0;
+ try{for(;;){
+  const x=await rd.read();if(it.ac.signal.aborted){rd.cancel();throw new Error('abort')}if(x.done)break;
+  parts.push(x.value);got+=x.value.length;if(got>BIGL){rd.cancel();return false}
+  setP(it,total?got/total*100:-1,fmt(got)+(total?' / '+fmt(total):''),spd(got,t0));
+ }}catch(e){if(it.ac.signal.aborted)throw e;return false}
+ it.name=nm;finish(it,new Blob(parts,{type:ct||'application/octet-stream'}));return true}
+function viaWD(it,url){const yt=/(youtube\.com|youtu\.be)/i.test(url),qv=/music\.youtube\.com/i.test(url)?'audio':yt?(it.qv||S.yq||'best'):'best',hint=it.fname||'';return wdGet(it,url,qv).then(async u=>{it.fname='';it.dlu=u;if(!WVU&&await wdDl(it,u,hint))return;if(it.ac.signal.aborted)throw new Error('abort');nat(it,u)})}
+function openExt(u){let w=null;try{w=window.open(u,'_blank')}catch(e){}if(w)return;const l=document.createElement('a');l.href=u;l.target='_blank';l.rel='noopener';document.body.appendChild(l);l.click();l.remove()}
+function natDl(u){if(S.dm==='x'){openExt(u);return}const f=document.createElement('iframe');f.style.display='none';f.allow="autoplay 'none'";f.onload=()=>setTimeout(()=>f.remove(),300);f.src=u;document.body.appendChild(f);setTimeout(()=>f.remove(),120000)}
+function nat(it,u){natDl(u);it.nat=S.dm==='x'?2:1;it.st='done';it.size=0;it.pct=100;sync(it);toast(S.dm==='x'?'اگر مرورگر باز نشد، دکمهٔ «دانلود با مرورگر سیستم» را بزنید':'دانلود به دانلودر دستگاه سپرده شد')}
+async function viaApi(it,url){
+ if(/\/api\/v1\//.test(S.api))return viaWD(it,url);
+ let r;
+ try{r=await fx(it,S.api,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(it.qv==='audio'?{url:url,downloadMode:'audio',audioFormat:'best'}:{url:url,videoQuality:'1080'})})}
+ catch(e){if(it.ac.signal.aborted)throw e;throw new Error('اتصال به سرور API برقرار نشد')}
+ let j;try{j=await r.json()}catch(e){throw new Error('پاسخ سرور API معتبر نیست')}
+ if(j.status==='error')throw new Error('خطای API: '+((j.error&&j.error.code)||'نامشخص'));
+ let u=j.url;if(j.status==='picker'&&j.picker&&j.picker[0])u=j.picker[0].url;
+ if(!u)throw new Error('سرور API لینک دانلود نداد');
+ it.fname=j.filename||'';
+ await direct(it,u)}
+
+function finish(it,blob){
+ it.blob=blob;it.size=blob.size;it.st='done';
+ if(!it.size){it.st='err';it.err='فایل خالی دریافت شد';sync(it);return}
+ save(it);sync(it)}
+function lname(n){n=String(n||'');const m=new RegExp('\\.(?:'+EXTS+'|ts)$','i').exec(n),ex=m?m[0].toLowerCase():'';let b=m?n.slice(0,m.index):n;b=b.replace(/^lindown[\s_.-]*/i,'').replace(/\b\d{3,4}p\b/gi,' ').replace(/[0-9\u0660-\u0669\u06F0-\u06F9]+/g,' ').replace(/[\\\/:*?"<>|()\[\]{}_]+/g,' ').replace(/\s+/g,' ').replace(/^[\s.\-–—]+|[\s.\-–—]+$/g,'');return b?'Lindown - '+b+ex:'Lindown'+ex}
+function save(it){
+ if(!it.blob)return;
+ if(!it.href)it.href=URL.createObjectURL(it.blob);
+ const a=document.createElement('a');a.href=it.href;a.download=it.name=lname(it.name);
+ document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),500);
+ toast('ذخیره شد: '+(it.name||''))}
+
+function msg(e){
+ const m=e&&e.message||'';
+ if(m==='timeout')return 'سرور دیر پاسخ داد (مهلت ۴۵ ثانیه تمام شد). دوباره امتحان کنید یا دکمه «دانلود با مرورگر» را بزنید';
+ if(m==='BIG')return 'فایل بزرگ است و داخل برنامه ذخیره نمی‌شود. دکمه «دانلود با مرورگر» را بزنید';
+ if(m==='PAGE')return API()?'سرور API نتوانست این لینک را باز کند':'این لینک یک صفحه وب است، نه فایل. در تنظیمات آدرس API وارد کنید';
+ if(/Failed to fetch|NetworkError|Load failed/i.test(m)||e instanceof TypeError)return 'سرور اجازه دسترسی نمی‌دهد یا اینترنت قطع است. دکمه «دانلود با مرورگر» را امتحان کنید';
+ if(/^HTTP (403|401)/.test(m))return 'سرور دسترسی را رد کرد ('+m+'). لینک ممکن است منقضی شده باشد';
+ if(/^HTTP 404/.test(m))return 'لینک پیدا نشد (HTTP 404)';
+ return m||'خطای ناشناخته'}
+
+async function run(it){
+ it.sr=0;it.nat=0;it.dlu='';it.ac=new AbortController();it.st='run';it.err='';it.pct=-1;it.txt='در حال اتصال...';it.sp='';sync(it);
+ try{
+  try{API()&&/(youtube\.com|youtu\.be|instagram\.com|tiktok\.com|facebook\.com|fb\.watch|twitter\.com|\/\/x\.com)/i.test(it.url)?await viaApi(it,it.url):/\.m3u8?([?#]|$)/i.test(it.url)?await hls(it,it.url):/^https?:\/\/(?:t|telegram)\.me\//i.test(it.url)?await tg(it,it.url):await direct(it,it.url)}
+  catch(e){if(e.message==='PAGE'&&!it.ac.signal.aborted){if(API()){try{await viaApi(it,it.url)}catch(e2){await page(it,it.url)}}else await page(it,it.url)}else throw e}
+ }catch(e){
+  if(it.st==='done')return;
+  it.st=it.ac.signal.aborted?'cancel':'err';it.err=it.st==='err'?msg(e):'';sync(it);
+  if(it.st==='err'&&e instanceof TypeError){
+   try{await Promise.race([fetch(it.url,{mode:'no-cors',method:'HEAD'}),new Promise((_,j)=>setTimeout(j,8000))]);it.err='سرور در دسترس است ولی اجازه دسترسی به برنامه را نمی‌دهد (CORS). دکمه «دانلود با مرورگر» را بزنید'}
+   catch(x){it.err='به سرور وصل نمی‌شود؛ اینترنت، فیلترشکن یا درستی لینک را بررسی کنید'}
+   sync(it);
+  }
+ }}
+
+const IPTV='https://iptv-org.github.io/iptv/index.m3u',MC={};
+const nm3=r=>r.k==='صوت'&&!r.yt&&!r.ia&&!r.m3&&!/\.mp3(?:[?#&]|$)/i.test(r.url||'');
+const mp=e=>({t:e.t,k:/\.(mp3|aac|m4a|ogg|opus|flac|wav|wma)([?#]|$)/i.test(e.u)?'صوت':/\.m3u8?([?#]|$)/i.test(e.u)?'استریم':'ویدیو',url:e.u,h:e.t.replace(/[\\/:*?"<>|]+/g,'_')});
+function pm3u(txt,base){
+ const out=[];let n='';
+ for(const x of txt.split(/\r?\n/)){
+  if(x.indexOf('#EXTINF')===0){n=x.slice(x.lastIndexOf(',')+1).trim()}
+  else if(x.trim()&&x[0]!=='#'){let u;try{u=new URL(x.trim(),base).href}catch(e){continue}out.push({t:n||u.split('/').pop(),u:u});n=''}
+ }
+ return out}
+const nz=x=>String(x||'').normalize('NFKC').replace(/([a-z])([A-Z])/g,'$1 $2').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[أإٱآ]/g,'ا').replace(/ؤ/g,'و').replace(/ئ/g,'ی').replace(/[ۀة]/g,'ه').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\u0640\u064B-\u065F\u0670\u200c-\u200f\u061c]/g,'').replace(/[۰-۹]/g,c=>c.charCodeAt(0)-1776).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+const ck=x=>nz(x).replace(/ /g,''),inL=(L,x)=>L.some(y=>nz(y)===x);
+const PH={ب:'b',پ:'p',ت:'t',ث:'s',ج:'j',چ:'C',ح:'h',خ:'X',د:'d',ذ:'z',ر:'r',ز:'z',ژ:'Z',س:'s',ش:'S',ص:'s',ض:'z',ط:'t',ظ:'z',غ:'q',ف:'f',ق:'q',ک:'k',گ:'q',ل:'l',م:'m',ن:'n',ه:'h'};
+const sk=w=>{let o='';
+ if(/[\u0600-\u06ff]/.test(w)){[...w].forEach((c,i,a)=>{if(c==='ه'&&i===a.length-1&&a.length>2)return;o+=PH[c]||(/\d/.test(c)?c:'')})}
+ else o=w.replace(/([aeiou])h$/,'$1').replace(/kh/g,'X').replace(/gh/g,'q').replace(/sh/g,'S').replace(/ch/g,'C').replace(/zh/g,'Z').replace(/ph/g,'f').replace(/x/g,'ks').replace(/[cg]/g,m=>m==='c'?'k':'q').replace(/[aeiouywv']/g,'');
+ return o.replace(/(.)\1+/g,'$1')};
+function rank(r,V){
+ const T=nz((r.t||'')+' '+(r.fn||'')).split(' '),K=T.join('');let b=0,S;
+ V.forEach(v=>{
+  const w=nz(v).split(' ').filter(Boolean);if(!w.length)return;let c=0;
+  w.forEach(x=>{
+   if(T.includes(x)||(x.length>2&&K.includes(x))){c++;return}
+   const s=sk(x);
+   if(s.length>1){S=S||T.map(sk);if(S.includes(s)||(s.length>2&&S.join('').includes(s)))c++}
+  });
+  c/=w.length;if(K.includes(w.join('')))c+=1;
+  b=Math.max(b,c)});
+ return b}
+function flt(L,q){
+ const w=nz(q).split(' ').filter(Boolean),h=e=>ck(e.t+' '+e.u);
+ return L.filter(e=>{const x=h(e);return w.every(y=>x.includes(y))}).slice(0,60).map(mp)}
+function plist(it,txt,url,q){
+ it.res=flt(pm3u(txt,url),q).filter(r=>!REL(r)&&!nm3(r));it.st='idle';sync(it);
+ rr(it,it.res.length?it.res.length+' مورد؛ دکمهٔ ▶ را بزنید؛ دانلود از داخل پخش‌کننده انجام می‌شود (برای جستجو، بعد از لینک نام را بنویسید)':'در این لیست چیزی پیدا نشد')}
+async function sM3u(it,url,q){MC[url]=MC[url]||get(it,url).then(r=>r.text());const t=await MC[url].catch(e=>{delete MC[url];throw e});return flt(pm3u(t,url),q)}
+async function sCommons(it,q,ty,pg){
+ const j=await (await get(it,'https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=30&prop=imageinfo&iiprop=url|size|mime&gsroffset='+((pg||0)*30)+'&gsrsearch='+encodeURIComponent(q+' filetype:'+ty.join('|')))).json();
+ return Object.values((j.query&&j.query.pages)||{}).filter(x=>x.imageinfo).map(x=>{const i=x.imageinfo[0];return{t:x.title.replace(/^File:/,''),k:/^audio/.test(i.mime)||/\.(mp3|ogg|oga|opus|flac|wav|mid)$/i.test(x.title)?'صوت':'ویدیو',s:i.size,dr:+i.duration||0,url:i.url}})}
+async function sOv(it,q,ty,pg){
+ if(!ty.includes('audio'))throw new Error('x');
+ const j=await (await get(it,'https://api.openverse.org/v1/audio/?extension=mp3&page_size=20&page='+((pg||0)+1)+'&q='+encodeURIComponent(q))).json();
+ return (j.results||[]).filter(x=>x.url).map(x=>({t:x.title||String(x.id),k:'صوت',m3:1,url:x.url,s:x.filesize||0,dr:x.duration?x.duration/1000:0,d:'Openverse'}))}
+const YTH='https://www.youtube.com/watch?v=';
+const ytd=s=>{if(typeof s==='number')return s;const p=String(s||'').split(':').map(Number);return p.length&&!p.some(isNaN)?p.reduce((a,b)=>a*60+b,0):0};
+const ytr=(id,t,ch,dr,mu)=>({t:(t||id)+(ch?' — '+ch:''),k:mu?'صوت':'ویدیو',yt:id,url:YTH+id,dr:dr||0,d:mu?'YouTube Music':'YouTube',pb:2,pm:1});
+const tmo=(p,ms)=>Promise.race([p,new Promise((_,j)=>setTimeout(()=>j(new Error('timeout')),ms))]);
+const first=F=>new Promise((res,rej)=>{let n=F.length,e;F.forEach(f=>f().then(o=>{if(o&&o.length)res(o);else if(!--n)rej(e||new Error('x'))},x=>{e=x;if(!--n)rej(e)}))});
+const ytw=(o,out,d)=>{if(!o||typeof o!=='object'||d>16)return;if(o.videoRenderer&&o.videoRenderer.videoId)out.push(o.videoRenderer);for(const k in o)ytw(o[k],out,d+1)};
+async function ytPiped(it,q,mu){
+ let L=ytPiped.L;
+ if(!L){L=['https://pipedapi.kavin.rocks','https://api.piped.private.coffee','https://pipedapi.adminforge.de'];
+  try{const a=await (await try1(it,'https://piped-instances.kavin.rocks/',6000)).json();
+   L=[...new Set((Array.isArray(a)?a:[]).filter(x=>x&&x.api_url).sort((x,y)=>(+y.uptime_24h||0)-(+x.uptime_24h||0)).slice(0,3).map(x=>String(x.api_url).replace(/\/$/,'')).concat(L))]}catch(e){}
+  ytPiped.L=L}
+ let err;
+ for(const b of L.slice(0,4)){
+  try{const r=await try1(it,b+'/search?q='+encodeURIComponent(q)+'&filter='+(mu?'music_songs':'videos'),7000);if(!r.ok)throw new Error('HTTP '+r.status);
+   const o=((await r.json()).items||[]).map(x=>[x,/[?&]v=([\w-]{11})/.exec(x.url||'')]).filter(a=>a[1]).map(a=>ytr(a[1][1],a[0].title,a[0].uploaderName,a[0].duration,mu));
+   if(o.length)return o}
+  catch(e){err=e;if(it.ac.signal.aborted)throw e}}
+ throw err||new Error('x')}
+async function ytHtml(it,q){
+ const h=await (await get(it,'https://www.youtube.com/results?hl=en&gl=US&sp=EgIQAQ%253D%253D&search_query='+encodeURIComponent(q))).text(),m=/ytInitialData\s*=\s*(\{[\s\S]*?\})\s*;\s*<\/script>/.exec(h);
+ if(!m)throw new Error('x');
+ const V=[],S2={},tx=o=>o?(o.simpleText||(o.runs||[]).map(r=>r.text).join('')):'';ytw(JSON.parse(m[1]),V,0);
+ return V.filter(x=>!S2[x.videoId]&&(S2[x.videoId]=1)).map(x=>ytr(x.videoId,tx(x.title),tx(x.ownerText||x.longBylineText),ytd(tx(x.lengthText)),0))}
+async function ytMusic(it,q){
+ const r=await fx(it,'https://corsproxy.io/?url='+encodeURIComponent('https://music.youtube.com/youtubei/v1/search?prettyPrint=false'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({context:{client:{clientName:'WEB_REMIX',clientVersion:'1.20250101.01.00',hl:'en',gl:'US'}},query:q,params:'EgWKAQIIAWoKEAkQBRAKEAMQBA=='})});
+ if(!r.ok)throw new Error('HTTP '+r.status);
+ const out=[],w=o=>{if(!o||typeof o!=='object')return;if(o.musicResponsiveListItemRenderer){out.push(o.musicResponsiveListItemRenderer);return}for(const k in o)w(o[k])};w(await r.json());
+ return out.map(x=>{const fc=(x.flexColumns||[]).map(c=>(((c.musicResponsiveListItemFlexColumnRenderer||{}).text||{}).runs||[]).map(z=>z.text)),id=(/"videoId":"([\w-]{11})"/.exec(JSON.stringify(x))||[])[1],sub=(fc[1]||[]).filter(z=>z.trim()!=='•'),du=sub.find(z=>/^\d+:\d\d(:\d\d)?$/.test(z));
+  return id?ytr(id,(fc[0]||[]).join(''),sub.filter(z=>z!==du&&z!=='Song'&&z!=='Video')[0]||'',ytd(du),1):null}).filter(Boolean)}
+async function sYt(it,q,ty,mu){
+ if(mu&&!ty.includes('audio'))throw new Error('x');
+ const au=mu||(ty.length===1&&ty[0]==='audio'),sc=()=>ytHtml(it,q);let o;
+ if(mu){try{o=await tmo(first([()=>ytPiped(it,q,1),()=>ytMusic(it,q)]),11000)}catch(e){if(it.ac.signal.aborted)throw e}if(!o||!o.length)o=await sc()}
+ else o=await first([()=>ytPiped(it,q,0),sc]);
+ return o.map(r=>(r.k=au?'صوت':'ویدیو',r.d=mu?'YouTube Music':'YouTube',r))}
+async function more(it){
+ if(it.busy||!it.sq)return;
+ if(it.ac.signal.aborted)it.ac=new AbortController();it.stp=null;it.busy=1;sync(it);it.pg=(it.pg||0)+1;
+ const tk=it.tk,q=it.sq,ty=it.sty;
+ rr(it,(it.ss?'{S}\n':'')+'!در حال جستجوی بیشتر...');
+ const R=await Promise.allSettled([sCommons(it,q,ty,it.pg),sArch(it,q,ty,it.pg),sOv(it,q,ty,it.pg)]);
+ if(it.tk!==tk)return;it.busy=0;sync(it);
+ const seen={};(it.res||[]).concat(it.weak||[]).forEach(r=>{seen[r.url||r.ia]=1});
+ const A=[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value)).filter(r=>!seen[r.url||r.ia]&&!REL(r)&&!nm3(r)).map(r=>{r.d=r.d||'منبع';r.sc=rank(r,[q]);return r});
+ it.res=(it.res||[]).concat(A.filter(r=>r.sc>=1));it.weak=(it.weak||[]).concat(A.filter(r=>r.sc<1));
+ rr(it,(it.ss?'{S}\n':'')+'!'+(A.length?A.length+' نتیجهٔ جدید اضافه شد':'نتیجهٔ بیشتری پیدا نشد'))}
+async function sArch(it,q,ty,pg){
+ const mt=ty.map(x=>'mediatype:'+(x==='video'?'movies':'audio')).join(' OR ');
+ const j=await (await get(it,'https://archive.org/advancedsearch.php?output=json&rows=30&page='+((pg||0)+1)+'&fl[]=identifier&fl[]=title&fl[]=mediatype&sort[]=downloads+desc&q='+encodeURIComponent('('+q+') AND ('+mt+')'))).json();
+ return j.response.docs.map(d=>({t:d.title||d.identifier,k:d.mediatype==='audio'?'صوت':'ویدیو',ia:d.identifier}))}
+const IAM={};
+function iaFile(it,id){return iaMeta(it,id).then(x=>x.url)}
+function iaMeta(it,id){return IAM[id]=IAM[id]||iaM(it,id).catch(e=>{delete IAM[id];throw e})}
+const iaT=x=>{x=String(x||'');return /:/.test(x)?x.split(':').reduce((a,b)=>a*60+(+b||0),0):(+x||0)};
+async function iaM(it,id){
+ const j=await (await get(it,'https://archive.org/metadata/'+encodeURIComponent(id))).json();
+ const au=((j.metadata||{}).mediatype)==='audio',O=au?['mp3']:['mp4','m4v','webm','mkv','ogv','mp3','m4a','ogg','flac','wav'],ex=x=>x.name.split('.').pop().toLowerCase();
+ const f=(j.files||[]).filter(x=>O.includes(ex(x))&&!/_thumb|sample/i.test(x.name)).sort((a,b)=>O.indexOf(ex(a))-O.indexOf(ex(b))||(+b.size||0)-(+a.size||0))[0];
+ if(!f)throw new Error('فایل قابل دانلودی برای این مورد پیدا نشد');
+ return{url:'https://archive.org/download/'+id+'/'+f.name.split('/').map(encodeURIComponent).join('/'),s:+f.size||0,d:iaT(f.length)}}
+
+const fd=s=>{s=Math.round(s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60,z=n=>String(n).padStart(2,'0');return h?h+':'+z(m)+':'+z(x):m+':'+z(x)};
+const mti=r=>{
+ const a=[];if(r.dr)a.push('<span>⏱ '+fd(r.dr)+'</span>');if(r.s)a.push('<span>💾 '+fmt(r.s)+'</span>');
+ if(r.pb===1&&!(r.dr&&r.s))a.push('<span class="uk">…</span>');
+ else if(r.pb===2&&!a.length)a.push('<span class="uk">'+(r.yt?'مدت نامشخص':'حجم و مدت نامشخص')+'</span>');
+ return a.join('')};
+const mtx=r=>'<span class="mt">'+mti(r)+'</span>';
+const PIN={},PQ=[];let PNN=0;
+const pf=(u,ms,o)=>{
+ const c={ac:new AbortController()};let h;
+ const t=new Promise((_,j)=>{h=setTimeout(()=>{c.ac.abort();j(new Error('timeout'))},ms)});
+ return Promise.race([fx(c,u,o),t]).then(r=>{clearTimeout(h);r.cc=c;return r},e=>{clearTimeout(h);throw e})};
+async function psz(u){
+ let H='';try{H=new URL(u).host}catch(e){}
+ const on=S.px!==false||!!(S.pp&&S.ppon!==false),o={headers:{Range:'bytes=0-0'}},L=[];
+ if(!(on&&NC[H]))L.push([u,6000]);
+ if(on)pxs().slice(0,2).forEach(p=>L.push([p.f(u),9000]));
+ for(const x of L){
+  try{
+   const r=await pf(x[0],x[1],o),ct=r.headers.get('content-type')||'',cr=/\/(\d+)\s*$/.exec(r.headers.get('content-range')||'');
+   let n=0;
+   if(!/text\/html/i.test(ct)){if(cr)n=+cr[1];else if(r.status===200)n=+r.headers.get('content-length')||0}
+   try{r.cc.ac.abort()}catch(e){}try{r.body&&r.body.cancel()}catch(e){}
+   if(n>=2048)return n
+  }catch(e){}
+ }
+ return 0}
+function pdur(u,k){
+ return new Promise(res=>{
+  const m=document.createElement(k==='صوت'?'audio':'video');let h;
+  const end=v=>{clearTimeout(h);m.onloadedmetadata=m.onerror=null;try{m.removeAttribute('src');m.load()}catch(e){}res(v)};
+  m.preload='metadata';m.muted=true;
+  m.onloadedmetadata=()=>end(isFinite(m.duration)&&m.duration>0?m.duration:0);
+  m.onerror=()=>end(0);h=setTimeout(()=>end(0),12000);m.src=u})}
+async function probe(it,r){
+ let u=r.url||'',s=r.s||0,d=r.dr||0;
+ try{
+  if(!u&&r.ia){const m=await iaMeta({ac:new AbortController(),sr:1},r.ia);u=m.url;s=s||m.s;d=d||m.d}
+  const c=u&&PIN[u];
+  if(c){s=s||c.s;d=d||c.d}
+  else if(u){
+   const x=await Promise.all([s||psz(u),d||pdur(u,r.k)]);s=x[0];d=x[1];PIN[u]={s:s,d:d}
+  }
+ }catch(e){}
+ r.s=s||r.s;r.dr=d||r.dr;r.pb=2;pupd(it)}
+function pump(){
+ while(PNN<3&&PQ.length){
+  const x=PQ.shift();
+  if(x.it.tk!==x.tk){x.r.pb=0;continue}
+  PNN++;probe(x.it,x.r).then(()=>{PNN--;pump()},()=>{PNN--;pump()})
+ }}
+function pupd(it){
+ const d=document.getElementById('i'+it.id);if(!d)return;
+ const R=d.querySelectorAll('.res .rw'),L=it.res||[];
+ R.forEach(el=>{const r=L[+el.dataset.k],m=el.querySelector('.mt');if(!r||!m)return;const h=mti(r);if(m._h!==h){m._h=h;m.innerHTML=h}})}
+function pvis(it){
+ const d=document.getElementById('i'+it.id);if(!d||it.col)return;
+ const c=d.querySelector('.res'),R=d.querySelectorAll('.res .rw'),L=it.res||[];if(!c||!R.length)return;
+ const cr=c.getBoundingClientRect();
+ R.forEach(el=>{
+  const r=L[+el.dataset.k];if(!r||r.pb||r.k==='استریم'||(r.s&&r.dr))return;
+  const b=el.getBoundingClientRect();
+  if(b.bottom<cr.top-250||b.top>cr.bottom+400)return;
+  r.pb=1;PQ.push({it:it,r:r,tk:it.tk})});
+ pupd(it);pump()}
+function sched(it){clearTimeout(it.pt);it.pt=setTimeout(()=>pvis(it),200)}
+const BC={'صوت':'au','ویدیو':'vd','استریم':'st'},BI={'صوت':'🎵','ویدیو':'🎬','استریم':'📡'};
+const PG=40,cbt=it=>(it.col?'◂ نمایش لیست':'▾ جمع کردن لیست')+' ('+(it.res||[]).length+')';
+const rowH=(r,k)=>'<div class="rw'+(r.wk?' wk':'')+'" data-k="'+k+'">'+(r.yt?'<img class="th" loading="lazy" alt="" src="https://i.ytimg.com/vi/'+r.yt+'/mqdefault.jpg" onerror="this.remove()">':'')+'<div class="dl"><span class="rt">'+esc(r.t)+'</span><span class="rm"><span class="bd '+BC[r.k]+'">'+BI[r.k]+' '+r.k+'</span>'+mtx(r)+'</span></div><div class="pb"><button class="pp dn" data-k="'+k+'" aria-label="دانلود مستقیم"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button><button class="pp" data-p="'+k+'" aria-label="پخش"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button></div></div>';
+const vf=(it,r)=>(!(it.top>=0)||r.si===it.top)&&(it.tab==='video'?r.k!=='صوت':it.tab==='audio'?r.k==='صوت':(it.au||r.k!=='صوت'));const vidx=it=>{const o=[];(it.res||[]).forEach((r,k)=>{if(vf(it,r))o.push(k)});return o};
+function pinSrc(it){const i=it.top;if(!(i>=0))return;['weak','skip'].forEach(n=>{const a=it[n]||[],g=a.filter(r=>r.si===i);if(g.length){g.forEach(r=>{r.wk=1});it.res=(it.res||[]).concat(g);it[n]=a.filter(r=>r.si!==i)}})}
+function lm(it,c){
+ if(it.col)return;const rw=c.querySelector('.rws');
+ if(!rw||c.scrollTop+c.clientHeight<c.scrollHeight-500)return;
+ const V=vidx(it),h=rw.children.length;if(h>=V.length)return;
+ rw.insertAdjacentHTML('beforeend',V.slice(h,h+PG).map(k=>rowH(it.res[k],k)).join(''));it.lim=h+PG}
+function mkNp(it){const d=document.getElementById('i'+it.id);if(!d)return;d.querySelectorAll('.res .rw').forEach(w=>w.classList.toggle('np',!!it.cur&&(it.res||[])[+w.dataset.k]===it.cur))}
+function rr(it,msg){
+ const d=document.querySelector('#i'+it.id+' .res');if(!d)return;
+ it.lm=msg||'';d.classList.toggle('col',!!it.col);
+ const R=it.res||[],Rf=it.top>=0?R.filter(r=>r.si===it.top):R,n=Rf.length,T=it.tab||'all',cV=Rf.filter(r=>r.k!=='صوت').length,cT=T==='video'?cV:T==='audio'?n-cV:(it.au?n:cV),V=vidx(it).slice(0,Math.max(it.lim||PG,PG)),
+  hd=n?'<div class="lh"><button class="tg" type="button" data-c="1">'+cbt(it)+'</button><div class="tabs">'+[['all','همه لینک‌ها',it.au?n:cV],['video','فقط ویدئو',cV],['audio','فقط صدا',n-cV]].map(a=>'<button type="button" data-tb="'+a[0]+'" class="'+(T===a[0]?'on':'')+'">'+a[1]+' ('+a[2]+')</button>').join('')+'</div></div>':'',
+  mb=it.sq&&!it.busy&&n?'<button class="tg" data-m="1">⤓ ادامه جستجو (نتایج بیشتر)</button>':'';
+ const ml=(msg||'').split('\n').filter(Boolean),mu=ml.length>1,mh=ml.map(l=>{
+  if(l==='{S}')return it.ss?'<div class="chs"><span data-s="-1" class="'+(it.top>=0?'':'sel')+'">همه منابع</span>'+it.ss.map((c,i)=>'<span'+(typeof c.v==='number'&&c.v>0?' data-s="'+i+'"':'')+' class="'+(c.v===null?'':c.v==='✗'?'no':c.v>0?'ok':'')+(it.top===i?' sel':'')+'">'+esc(c.n)+'<b>'+(c.v===null?dots('...'):esc(c.v))+'</b></span>').join('')+'</div>':'';
+  const st=!mu||l[0]==='!';return'<div class="ml'+(st?' sm':'')+'">'+dots(l[0]==='!'?l.slice(1):l)+'</div>'}).join('');
+ d.innerHTML=hd+(msg?'<div class="sx">'+mh+'</div>':'')+(n&&!cT?'<div class="rm">موردی در این دسته پیدا نشد</div>':'')+(it.weak&&it.weak.length?'<button data-w="1">نمایش '+it.weak.length+' نتیجهٔ کم‌ارتباط</button>':'')+(it.skip&&it.skip.length?'<button data-x="1">نمایش '+it.skip.length+' مورد کنار گذاشته‌شده (نوع فایل یا محتوای مذهبی)</button>':'')+(V.length?'<div class="rws">'+V.map(k=>rowH(R[k],k)).join('')+'</div>':'')+mb;mkNp(it);sched(it)}
+async function multi(f,V){
+ const R=await Promise.allSettled(V.map(f)),seen={},out=[];let ok=0;
+ R.forEach(r=>{if(r.status==='fulfilled'){ok++;r.value.forEach(x=>{const k=x.url||x.ia;if(!seen[k]){seen[k]=1;out.push(x)}})}});
+ if(!ok)throw new Error('x');return out}
+const mg=async L=>{const R=await Promise.allSettled(L),o=[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value));if(!o.length)throw new Error('x');return o};
+const EXTS='mp4|m4v|webm|mkv|avi|mov|wmv|flv|3gp|mp3|m4a|aac|ogg|opus|flac|wav|wma|m3u8',FILE_RE=new RegExp('\\.(?:'+EXTS+')([?#]|$)','i');
+function scanPage(h,base,tt){
+ h=h.replace(/\\u002F|\\\//gi,'/').replace(/&amp;/g,'&');
+ const seen={},out=[],ti=(tt||((/<title[^>]*>([^<]*)/i.exec(h)||[])[1]||'')).replace(/&[#a-z0-9]+;/gi,' ').replace(/\s+/g,' ').trim().slice(0,160);
+ const add=u=>{try{u=new URL(u,base).href}catch(e){return}if(seen[u])return;seen[u]=1;let n=u.split('?')[0].split('/').pop();try{n=decodeURIComponent(n)}catch(e){}const r=mp({t:(ti?ti+' — ':'')+n,u:u});r.fn=n;r.d=new URL(u).host;out.push(r)};
+ h.replace(new RegExp('(?:src|href|content|file|url|source|data-src|data-url)\\s*[=:]\\s*["\']([^"\']+?\\.(?:'+EXTS+')(?:\\?[^"\']*)?)["\']','gi'),(_,u)=>add(u));
+ h.replace(new RegExp('https?://[^\\s"\'<>\\\\]+?\\.(?:'+EXTS+')(?:\\?[^\\s"\'<>\\\\]*)?','gi'),u=>add(u));
+ out.forEach(r=>r.np=out.length);return out.slice(0,120)}
+async function page(it,url){
+ const L=scanPage(await (await get(it,url)).text(),url);
+ if(!L.length)throw new Error('فایل ویدیویی یا صوتی در این صفحه پیدا نشد (برای یوتیوب و مشابه آن در تنظیمات آدرس API لازم است)');
+ it.res=L.filter(r=>!REL(r)&&!nm3(r));it.st='idle';sync(it);rr(it,it.res.length+' فایل در صفحه پیدا شد؛ دکمهٔ ▶ را بزنید؛ دانلود از داخل پخش‌کننده انجام می‌شود')}
+const SKIP=/(youtube|youtu\.be|instagram|facebook|twitter|tiktok|aparat|imdb|pinterest|linkedin|google|duckduckgo|mojeek|bing|microsoft|msn)\./i;
+function links(h){
+ const L=[];
+ h.replace(/uddg=([^&"']+)/g,(_,x)=>{try{L.push(decodeURIComponent(x))}catch(e){}});
+ h.replace(/\/RU=([^\/]+)\/RK=/g,(_,x)=>{try{L.push(decodeURIComponent(x))}catch(e){}});
+ h.replace(/(?:[?&]|;)u=a1([A-Za-z0-9_-]+)/g,(_,x)=>{try{L.push(atob(x.replace(/-/g,'+').replace(/_/g,'/')))}catch(e){}});
+ h.replace(/href="(https?:\/\/[^"]+)"/g,(_,x)=>{L.push(x.replace(/&amp;/g,'&'))});
+ return L.filter(u=>/^https?:/.test(u)&&!SKIP.test(u)&&!REL({t:'',url:u}))}
+async function par(F,n){
+ const R=[];let i=0;
+ const w=async()=>{while(i<F.length){const k=i++;try{R[k]={status:'fulfilled',value:await F[k]()}}catch(e){R[k]={status:'rejected'}}}};
+ await Promise.all(Array.from({length:Math.min(n,F.length)},w));return R}
+const IPTVS=['https://iptv-org.github.io/iptv/languages/fas.m3u','https://iptv-org.github.io/iptv/countries/ir.m3u',IPTV];
+const sTv=async(it,v)=>[].concat(...await Promise.all(IPTVS.map(u=>sM3u(it,u,v).catch(()=>[]))));
+const nn=()=>Promise.reject(0),siteList=()=>[...new Set(DEFSITES.split(/\s+/).concat((S.sites||'').split(/\s+/)).filter(Boolean).concat(LRN().slice(0,10)))];
+const LRN=()=>{try{return JSON.parse(localStorage.getItem('lindownH')||'[]')}catch(e){return[]}};
+function learn(u){try{const h=new URL(u).host.replace(/^(?:www|dl\d*|cdn\d*|download|files?)\./i,'');if(!FILE_RE.test(u)||SKIP.test(h)||DEFSITES.split(/\s+/).indexOf(h)>-1)return;localStorage.setItem('lindownH',JSON.stringify([h].concat(LRN().filter(x=>x!==h)).slice(0,40)))}catch(e){}}
+const RW=['مذهبی','مداحی','مداح','نوحه','مرثیه','روضه','زیارت','زیارتنامه','دعای','قرآن','قرآنی','تلاوت','محرم','عاشورا','اربعین','امام','ائمه','اهل بیت','اهلبیت','حرم','عزاداری','سینه زنی','سینهزنی','مناجات','نماز','اذان','حجت الاسلام','آیت الله','آیتالله','نهج البلاغه','quran','koran','islamic','nasheed','nashid','muharram','ashura','azan','adhan','salat','sermon','bible','gospel','hymn','allah','imam','shiite','ziyara','dhikr','tilawat','surah','hadith'].map(nz);
+const RX=new RegExp('(^|[^a-z0-9\\u0600-\\u06ff])('+RW.join('|')+')(?=$|[^a-z0-9\\u0600-\\u06ff])');
+const REL=r=>{if(REL.off)return 0;let u=r.url||'';try{u=decodeURIComponent(u)}catch(e){}return RX.test(nz((r.t||'')+' '+u))};
+function cand(h,base){
+ const m=[];
+ h.replace(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]{0,90}?)<\/a>/gi,(_,a,t)=>{if(/download|دانلود|\bdl\b|dl\.|لینک|1080|720|480/i.test(a+' '+t.replace(/<[^>]*>/g,'')))m.push(a)});
+ return[...new Set(m.map(a=>{try{return new URL(a,base).href}catch(e){return''}}).filter(u=>/^https?:/.test(u)&&!SKIP.test(u)&&!REL({t:'',url:u})))].slice(0,8)}
+async function crawl(it,url,d){
+ if(FILE_RE.test(url)){let n=url.split('?')[0].split('/').pop();try{n=decodeURIComponent(n)}catch(e){}const r=mp({t:n,u:url});try{r.d=new URL(url).host}catch(e){}return[r]}
+ const rs=await get(it,url);
+ if(!/text|html|xml|json/i.test(rs.headers.get('content-type')||'text')){try{rs.body&&rs.body.cancel()}catch(e){}return[]}
+ const h=await rs.text(),f=scanPage(h,url);
+ if(f.length||d<=0)return f;
+ const R=await par(cand(h,url).map(u=>async()=>crawl(it,u,d-1)),4);
+ return[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value))}
+function ptext(h){
+ const t=(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(h)||[])[1]||'',a=(/<article[\s\S]*?<\/article>/i.exec(h)||[])[0]||h.replace(/<(script|style|nav|footer|aside|header)\b[\s\S]*?<\/\1>/gi,' ');
+ return (t+' '+a).replace(/<[^>]*>/g,' ').replace(/&[#a-z0-9]+;/gi,' ').replace(/\s+/g,' ').slice(0,8000)}
+const pmOf=(h,q)=>rank({t:ptext(h)},[q])>=1;
+function cands(h,base,v){
+ const A=[],seen={};let host='';try{host=new URL(base).host}catch(e){}
+ const bad=/\/(category|tag|author|page|feed|wp-content|wp-admin|wp-json|comments?|cart|checkout|my-account|contact|about|login|register)(\/|$)|wp-login\.php|\.(css|js|jpe?g|png|gif|webp|svg|ico|woff2?)$/i;
+ h.replace(/<a\b[^>]*?href=["']([^"'#][^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi,(_,a,t)=>{
+  let u;try{u=new URL(a.replace(/&amp;|&#0?38;/g,'&'),base)}catch(e){return}
+  if(!/^https?:$/.test(u.protocol)||u.host!==host||u.pathname.length<2||/[?&]s=/.test(u.search)||bad.test(u.pathname)||seen[u.href])return;
+  seen[u.href]=1;let p=u.pathname;try{p=decodeURIComponent(p)}catch(e){}
+  const tx=t.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+  A.push({u:u.href,s:rank({t:tx+' '+p.replace(/[-_\/]+/g,' ')},[v])})});
+ return A.filter(x=>x.s>=1).map(x=>x.u)}
+async function pageHits(it,url,q){
+ if(FILE_RE.test(url))return crawl(it,url,0);
+ const rs=await get(it,url);
+ if(!/text|html|xml|json/i.test(rs.headers.get('content-type')||'text')){try{rs.body&&rs.body.cancel()}catch(e){}return[]}
+ const h=await rs.text(),pm=pmOf(h,q)?1:0,f=scanPage(h,url),tag=L=>(L.forEach(r=>r.pm=pm),L);
+ if(f.length)return tag(f);
+ const R=await par(cand(h,url).map(u=>async()=>tag(await crawl(it,u,0))),4);
+ return[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value))}
+const DGO={ok:3,nolink:2,none:1,dead:0},DGL={ok:'نتیجه داد',nolink:'صفحهٔ مرتبط داشت ولی لینک مستقیم نبود',none:'چیزی مرتبط نیافت',dead:'در دسترس نبود'};
+const dgs=it=>{const c={};Object.values(it.dm||{}).forEach(k=>c[k]=(c[k]||0)+1);return['ok','nolink','none','dead'].filter(k=>c[k]).map(k=>c[k]+' سایت '+DGL[k]).join('، ')};
+function feedItems(h){
+ const o=[],cd=z=>z.replace(/^\s*<!\[CDATA\[/,'').replace(/\]\]>\s*$/,'');
+ h.replace(/<item>([\s\S]*?)<\/item>/gi,(_,x)=>{
+  o.push({t:cd((/<title>([\s\S]*?)<\/title>/i.exec(x)||[])[1]||'').replace(/<[^>]*>/g,'').trim(),l:((/<link>\s*([^<\s]+)\s*<\/link>/i.exec(x)||[])[1]||'').replace(/&amp;|&#0?38;/g,'&'),c:cd((/<content:encoded>([\s\S]*?)<\/content:encoded>/i.exec(x)||[])[1]||'')})});
+ return o}
+function slugs(q,ty){
+ const w=nz(q).split(' ').filter(Boolean);if(!w.length||w.length>5)return[];
+ const a=w.join('-');
+ if(!/[\u0600-\u06ff]/.test(a))return[a,w.join(''),'download-film-'+a];
+ const a2=a.replace(/-ها(-|$)/g,'ها$1'),M=!ty||ty.includes('video'),A=!ty||ty.includes('audio');
+ let L=[];
+ if(M)L.push('دانلود-فیلم-'+a2,a2,'دانلود-فیلم-'+a);
+ if(A)L.push(a,'آهنگ-'+a,'دانلود-آهنگ-'+a);
+ if(w.length===2)L.push(w[1]+'-'+w[0]);
+ L.push(w.join(''));
+ return[...new Set(L)].slice(0,6)}
+async function sSite(it,s,q,si){
+ const pat=s.indexOf('{q}')>-1,b=pat?'':'https://'+s.replace(/^https?:\/\//i,'').replace(/\/.*$/,'');
+ let net=0,rch=0,seenP=0,out=[],P=[];
+ const tk0=it.tk;let em=0;const emit=()=>{if(si!=null&&it.live&&it.tk===tk0&&out.length>em){it.live(si,out.slice(em));em=out.length}};
+ const g=async u=>{try{const r=await get(it,u);rch++;return r}catch(e){if(it.ac.signal.aborted)throw e;if(e.site||/^HTTP (404|410)/.test(e.message))rch++;else net++;throw e}},dead=()=>!rch&&net>=2;
+ // one post: use its own text to decide whether it really contains the typed phrase
+ const take=(t,l,c,only)=>{
+  const f=l?scanPage(c,l,t):[],pm=pmOf(t+' '+c,q)?1:0;
+  if(only&&!pm)return;
+  if(f.length){f.forEach(r=>r.pm=pm);out=out.concat(f)}else if(l)P.push(l)};
+ const crawlP=async()=>{emit();
+  const R=await par(P.filter(u=>!REL({t:'',url:u})).slice(0,25).map(u=>async()=>{const v=await pageHits(it,u,q);seenP++;out=out.concat(v);emit();return v}),4);
+  P=[]};
+ const Q=encodeURIComponent(q);
+ if(!pat){
+  const R0=await par(slugs(q,it.sty).map(sg=>()=>pageHits(it,b+'/'+encodeURIComponent(sg)+'/',q)),4);
+  R0.forEach(r=>{if(r.status==='fulfilled'){if(r.value.length){seenP++;out=out.concat(r.value)}else rch++}});emit();
+ }
+ if(!pat){
+  try{
+   const j=await (await g(b+'/wp-json/wp/v2/posts?per_page=20&search='+Q)).json();
+   if(Array.isArray(j))j.forEach(p=>take(((p.title&&p.title.rendered)||'').replace(/<[^>]*>/g,'').trim(),p.link,(p.content&&p.content.rendered)||''))
+  }catch(e){if(it.ac.signal.aborted)throw e}
+  if(!out.length&&!P.length&&!dead()){
+   try{feedItems(await (await g(b+'/?s='+Q+'&feed=rss2')).text()).forEach(x=>take(x.t,x.l,x.c))}catch(e){if(it.ac.signal.aborted)throw e}
+  }
+ }
+ if(!out.length&&!P.length){
+  for(const u of pat?[s.replace('{q}',Q)]:[b+'/?s='+Q,b+'/search?q='+Q]){
+   if(dead())break;
+   try{
+    const h=await (await g(u)).text(),m=[];
+    h.replace(/<h[1-4][^>]*>\s*<a[^>]+href=["']([^"']+)["']/gi,(_,a)=>{try{m.push(new URL(a,u).href)}catch(e){}});
+    const cs=cands(h,u,q);
+    if(cs.length||m.length){P=[...new Set(cs.concat(m))].slice(0,12);break}
+    const f=scanPage(h,u);if(f.length){f.forEach(r=>r.pm=0);out=out.concat(f);break}
+   }catch(e){if(it.ac.signal.aborted)throw e}
+  }
+ }
+ await crawlP();
+ if(!out.length&&!pat&&!dead()&&q.indexOf(' ')>0){
+  for(const w of q.split(' ').sort((a,b)=>b.length-a.length).slice(0,2)){
+   try{
+    const j=await (await g(b+'/wp-json/wp/v2/posts?per_page=30&search='+encodeURIComponent(w))).json();
+    if(Array.isArray(j))j.forEach(p=>take(((p.title&&p.title.rendered)||'').replace(/<[^>]*>/g,'').trim(),p.link,(p.content&&p.content.rendered)||'',1))
+   }catch(e){if(it.ac.signal.aborted)throw e}
+   if(out.length||P.length)break}
+  await crawlP()}
+ // site's own search found nothing: read the latest posts and look for the phrase in their text ourselves
+ if(!out.length&&!pat&&!dead()){
+  try{
+   const j=await (await g(b+'/wp-json/wp/v2/posts?per_page=50&_fields=link,title,content')).json();
+   if(Array.isArray(j))j.forEach(p=>take(((p.title&&p.title.rendered)||'').replace(/<[^>]*>/g,'').trim(),p.link,(p.content&&p.content.rendered)||'',1))
+  }catch(e){if(it.ac.signal.aborted)throw e}
+  if(!out.length&&!P.length&&!dead()){
+   try{feedItems(await (await g(b+'/feed/')).text()).forEach(x=>take(x.t,x.l,x.c,1))}catch(e){if(it.ac.signal.aborted)throw e}
+  }
+  await crawlP();
+ }
+ emit();const k=out.length?'ok':seenP?'nolink':rch?'none':'dead';
+ it.dm=it.dm||{};if(!(s in it.dm)||DGO[k]>DGO[it.dm[s]])it.dm[s]=k;
+ if(!out.length)throw new Error('x');return out}
+async function sSites(it,q,L,si){
+ const R=await par(L.map(s=>async()=>sSite(it,s,q,si)),6);
+ const out=[].concat(...R.filter(r=>r.status==='fulfilled').map(r=>r.value));
+ if(!out.length)throw new Error('x');return out.slice(0,400)}
+async function sWeb(it,q,ty){
+ const tk0=it.tk,fa=/[\u0600-\u06FF]/.test(q),qs=[];
+ if(ty.includes('audio')){qs.push(fa?'دانلود آهنگ '+q+' mp3':q+' mp3 download');if(fa)qs.push(q+' mp3 site:ir')}
+ if(ty.includes('video')){qs.push(fa?'دانلود فیلم سریال '+q+' mp4':q+' mp4 download');if(fa)qs.push('دانلود '+q+' لینک مستقیم mp4')}
+ qs.push('intitle:"index of" "'+q+'" (mp4|mkv|mp3|avi)');
+ const g=x=>encodeURIComponent(x),E=[u=>'https://search.yahoo.com/search?p='+g(u),u=>'https://html.duckduckgo.com/html/?q='+g(u),u=>'https://www.bing.com/search?q='+g(u),u=>'https://www.bing.com/search?first=11&q='+g(u),u=>'https://www.mojeek.com/search?q='+g(u),u=>'https://www.mojeek.com/search?s=11&q='+g(u),u=>'https://search.brave.com/search?q='+g(u)];
+ const R0=await par([].concat(...qs.map(x=>E.map(f=>async()=>links(await (await get(it,f(x))).text()).slice(0,10)))),4);
+ const L=[...new Set([].concat(...R0.filter(r=>r.status==='fulfilled').map(r=>r.value)))].slice(0,40);
+ it.wd={ok:R0.filter(r=>r.status==='fulfilled').length,all:R0.length,l:L.length};if(!L.length)throw new Error('x');
+ const kn=siteList(),hs=[...new Set(L.map(u=>{try{return new URL(u).host.replace(/^www\./,'')}catch(e){return''}}).filter(h=>h&&kn.indexOf(h)<0))].slice(0,8);
+ const [R,X]=await Promise.all([par(L.map(u=>async()=>{const v=await pageHits(it,u,q);if(v.length&&it.live&&it.tk===tk0)it.live(3,v.slice(0,60));return v}),8),hs.length?sSites(it,q,hs,3).catch(()=>[]):[]]);
+ let out=[].concat(X);R.forEach(r=>{if(r.status==='fulfilled')out=out.concat(r.value)});
+ return out.slice(0,400)}
+const NAMES={'هایده':'hayedeh','معین':'moein','گوگوش':'googoosh','داریوش':'dariush','ابی':'ebi','شجریان':'shajarian','ایرج':'iraj','سیاوش':'siavash','ستار':'sattar','عارف':'aref','حمیرا':'homeira','مهستی':'mahasti','فرهاد':'farhad','شهرام':'shahram','کوروش':'kourosh','بنان':'banan','دلکش':'delkash','فردین':'fardin','پوران':'pouran','مرضیه':'marzieh','الهه':'elaheh','ویگن':'viguen','مهدی':'mehdi','محسن':'mohsen','چاوشی':'chavoshi','شادمهر':'shadmehr','مازیار':'maziar','یگانه':'yeganeh','تتلو':'tataloo','خالق':'khaleq|khalegh','سلطان':'soltan','قلبها':'ghalbha'},RN={};
+Object.keys(NAMES).forEach(k=>NAMES[k].split('|').forEach(v=>{RN[v]=k}));
+function en2(q){
+ const M={ا:'a',آ:'a',ب:'b',پ:'p',ت:'t',ط:'t',ث:'s',س:'s',ص:'s',ج:'j',چ:'ch',ح:'h',ه:'h',خ:'kh',د:'d',ذ:'z',ز:'z',ض:'z',ظ:'z',ر:'r',ژ:'zh',ش:'sh',ع:'',غ:'gh',ق:'gh',ف:'f',ک:'k',گ:'g',ل:'l',م:'m',ن:'n',و:'o',ی:'i',ئ:'',ء:''};
+ const one=(w,v)=>{
+  if(NAMES[w]){const x=NAMES[w].split('|');return x[v%x.length]}
+  const a=[...w],ins=v===1?'a':'e';let o='';
+  a.forEach((c,i)=>{
+   let l=M[c];if(l===undefined){o+=c;return}
+   if(c==='ی'&&i>0&&a[i-1]==='ا')l='y';
+   if(c==='و'&&i>0&&a[i-1]==='ا')l='v';
+   if(c==='ه'&&i===a.length-1&&i>0)l=v===0?'eh':'e';
+   const pc=o&&!/[aeiou]$/.test(o),cc=l&&!/^[aeiou]/.test(l);
+   if(i>0&&pc&&cc)o+=ins;
+   o+=l});
+  return o};
+ const W=nz(q).split(' ').filter(Boolean);
+ return[...new Set([0,1,2].map(v=>W.map(w=>one(w,v)).join(' ')))].filter(x=>x.replace(/ /g,'').length>1&&x!==q)}
+function fa2(q){
+ const D={gh:'ق',kh:'خ',sh:'ش',ch:'چ',zh:'ژ'},C={b:'ب',p:'پ',t:'ت',s:'س',j:'ج',h:'ه',d:'د',r:'ر',z:'ز',f:'ف',q:'ق',k:'ک',g:'گ',l:'ل',m:'م',n:'ن',v:'و',w:'و',y:'ی',c:'ک'};
+ const one=(w,tt)=>{
+  if(RN[w.toLowerCase()])return RN[w.toLowerCase()];
+  w=w.toLowerCase().replace(/[^a-z]/g,'').replace(/(.)\1+/g,'$1');
+  let o='',i=0;
+  while(i<w.length){
+   const c=w[i],n=w[i+1]||'';
+   if(D[c+n]){o+=D[c+n];i+=2;continue}
+   if(C[c]){o+=(c==='t'&&tt)?'ط':C[c];i++;continue}
+   if(c==='a'){if(i===0||i===w.length-1||/[nm]/.test(n))o+='ا'}
+   else if(c==='o'||c==='u'){if(i===0)o+='ا';else if(n==='o'||n==='u')o+='و'}
+   else if(c==='i'){if(i===0||i===w.length-1||n==='n')o+='ی'}
+   i++}
+  return o};
+ const W=q.split(/\s+/).filter(x=>/[a-z]/i.test(x));
+ return[...new Set([0,1].map(tt=>W.map(w=>one(w,tt)).filter(Boolean).join(' ')))].filter(x=>x.replace(/ /g,'').length>1)}
+async function search(it,t){
+ const tk=it.tk=(it.tk||0)+1;
+ it.ac=new AbortController();it.res=[];it.weak=[];it.err='';it.st='idle';it.name='';it.sr=1;it.sn='';it.dm={};it.wd=null;it.col=0;it.lim=PG;it.tab='all';it.top=-1;it.stp=null;it.busy=1;it.pg=0;sync(it);
+ const sm=/(?:^|\s)site:(\S+)/i.exec(t);it.only=sm?sm[1]:'';if(sm)t=t.replace(sm[0],'').trim();
+ if(!t){it.busy=0;sync(it);rr(it,'بعد از site: عبارت جستجو را هم بنویسید');return}
+ const AU=['audio','music','mp3','song','صوت','آهنگ','موزیک','موسیقی','ترانه'],VI=['video','movie','clip','film','فیلم','ویدیو','ویدئو','کلیپ','سریال'],SW=['دانلود','فایل','برای','با','از','در','به','را','و','این','یک','کامل','صدای','خواننده','اثر','download','the','of','a','and'];
+ REL.off=RX.test(nz(t));const tw=nz(t).split(' ').filter(Boolean),ha=tw.some(x=>inL(AU,x)),hv=tw.some(x=>inL(VI,x));
+ const ty=ha&&!hv?['audio']:hv&&!ha?['video']:['video','audio'];
+ const q=tw.filter(x=>!inL(AU,x)&&!inL(VI,x)&&!inL(SW,x)).join(' ')||nz(t);
+ const isFa=/[\u0600-\u06FF]/.test(q),F=isFa?[]:fa2(q),E=isFa?en2(q):[],V=[q].concat(F,E),VW=isFa?[q].concat(E.slice(0,2)):[q];it.en='';it.fa='';it.tp='';
+ const TR=[].concat(it.en?it.en.split(' / '):[],it.fa?it.fa.split(' / '):[]),VR=V.filter(v=>TR.indexOf(v)<0);
+ const pre=F.length?'معادل فارسی: '+F.join(' / ')+'\n':'';
+ const fa0=/[\u0600-\u06FF]/.test(q);
+ it.sq=q;it.sty=ty;it.au=ha;const NM=['Wikimedia','Archive.org','IPTV','وبسایت‌ها','Openverse','YouTube Music','YouTube'],NS=NM.length,DN=[],P=[[],[],[],[],[],[],[]];let ok=0,pend=NS,stopped=0;
+ const DD=()=>{const a=[];if(it.wd)a.push('موتورهای جستجو: '+it.wd.ok+' از '+it.wd.all+' درخواست پاسخ دادند، '+it.wd.l+' لینک نتیجه');const q=dgs(it);if(q)a.push('سایت‌ها: '+q);return a.length?'\n'+a.join('\n'):''};
+  const SS=()=>{if(it.only){it.ss=null;return''}it.ss=NM.map((n,i)=>({n:n,v:P[i].length?P[i].length:DN[i]===1?0:DN[i]===2?((i===4||i===5)&&!ty.includes('audio')?'—':'✗'):stopped?'—':null}));return'{S}\n'};
+ it.stp=()=>{stopped=1;rr(it,it.sm=pre+SS()+'!جستجو متوقف شد'+(it.res.length?' • '+it.res.length+' مورد پیدا شده':'')+DD())};
+ rr(it,pre+SS()+'!در حال بررسی منابع...');
+ {const sp=document.querySelector('#i'+it.id+' .spn'),t0=Date.now();clearInterval(it.pi);
+  if(sp){sp.classList.add('on');sp.querySelector('b').textContent='0%';
+   it.pi=setInterval(()=>{if(it.tk!==tk){clearInterval(it.pi);sp.classList.remove('on');return}
+    const e=1-Math.exp(-(Date.now()-t0)/25000);let c=0;for(let i=0;i<NS;i++)c+=DN[i]?1:e*.9;
+    sp.querySelector('b').textContent=Math.min(99,Math.floor(c/NS*100))+'%'},300)}}
+ const calc=()=>{const sd={},X=[],A=[].concat(...P.map((a,j)=>a.filter(r=>!nm3(r)).map(r=>(r.d=r.d||['Wikimedia','Archive.org','IPTV','وبسایت','Openverse','YouTube Music','YouTube'][j],r)))).map((r,i)=>(r.sc=Math.max(rank(r,VR),r.pm?1:0),r.o=i,r)).sort((a,b)=>b.sc-a.sc||a.o-b.o).filter(r=>{if(REL(r)){X.push(r);return 0}const k=r.url||r.ia;if(sd[k])return 0;sd[k]=1;const tt=ty.length>1||(ty[0]==='audio'?r.k==='صوت':r.k!=='صوت');if(!tt)X.push(r);return tt});const th=1;it.skip=X.slice(0,300);it.res=A.filter(r=>r.sc>=th).slice(0,500);it.weak=A.filter(r=>r.sc<th).slice(0,200);pinSrc(it);};
+ const mm=()=>pre+SS()+'!'+(pend?'نتایج تاکنون: '+it.res.length+' مورد':it.res.length?it.res.length+' مورد پیدا شد؛ برای دانلود دکمهٔ ▶ را بزنید':ok?'نتیجه‌ای پیدا نشد'+(ok<NS?'\nاتصال به بعضی سایت‌ها برقرار نشد؛ در تنظیمات پراکسی را تست کنید':''):'جستجو انجام نشد؛ اینترنت یا فیلترشکن را بررسی کنید')+(pend?'':DD());
+ let lt=0;const lv=()=>{if(lt)return;lt=setTimeout(function f(){lt=0;if(it.tk!==tk||stopped||!pend)return;if(Date.now()-LT<900){lt=setTimeout(f,400);return}calc();rr(it,it.sm=mm())},650)};
+ it.live=(i,a)=>{if(it.tk!==tk||!a||!a.length)return;a.forEach(x=>{x.si=i});P[i]=P[i].concat(a);lv()};
+ (it.only?[nn,nn,nn,()=>multi(v=>sSites(it,v,[it.only],3),[q]),nn,nn,nn]:[()=>multi(v=>sCommons(it,v,ty),VW),()=>multi(v=>sArch(it,v,ty),VW),()=>multi(v=>sTv(it,v),V),()=>mg([multi(v=>sWeb(it,v,ty),V.slice(0,fa0?2:3)),multi(v=>sSites(it,v,siteList(),3),VR.slice(0,fa0?2:3))]),()=>multi(v=>sOv(it,v,ty),VW),()=>sYt(it,q,ty,1),()=>sYt(it,q,ty,0)]).map(f=>f()).forEach((f,i)=>f.then(r=>{Array.isArray(r)&&r.forEach(x=>{x.si=i});P[i]=r;ok++;DN[i]=1}).catch(()=>{DN[i]=2}).then(()=>{
+  if(it.tk!==tk)return;
+  calc();
+  pend--;if(!pend){it.busy=0;sync(it);clearInterval(it.pi);const sp=document.querySelector('#i'+it.id+' .spn');if(sp){sp.querySelector('b').textContent='100%';setTimeout(()=>sp.classList.remove('on'),800)}}
+  rr(it,it.sm=mm())}))}
+let FS=null;
+function fsRot(){if(!FS)return;const v=FS.it.v;FS.pl.classList.toggle('rot',window.innerWidth<=window.innerHeight&&(!v.videoWidth||v.videoWidth>=v.videoHeight))}
+['resize','orientationchange'].forEach(e=>window.addEventListener(e,()=>setTimeout(fsRot,80)));
+function hideLater(it){clearTimeout(it.ht);it.ht=setTimeout(()=>{if(FS&&FS.it===it&&!it.pcd)FS.pl.classList.remove('ui')},2000)}
+function enterFs(it,d){
+ if(FS)return;
+ const pl=d.querySelector('.pl');FS={it,pl};
+ pl.classList.add('fs');it.pcd=0;clearTimeout(it.ht);document.body.style.overflow='hidden';
+ history.pushState({lfs:1},'');
+ if(!/; wv\)/.test(navigator.userAgent)){
+  try{const f=pl.requestFullscreen||pl.webkitRequestFullscreen;if(f){const r=f.call(pl);if(r&&r.catch)r.catch(()=>{})}}catch(e){}
+  try{if(!it.v.videoWidth||it.v.videoWidth>=it.v.videoHeight)screen.orientation.lock('landscape').then(fsRot,fsRot)}catch(e){}
+ }
+ fsRot();setTimeout(fsRot,300)}
+function exitFs(fromPop){
+ if(!FS)return;
+ const pl=FS.pl;FS=null;
+ pl.classList.remove('fs','ui','rot');document.body.style.overflow='';
+ try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}
+ try{screen.orientation.unlock()}catch(e){}
+ if(!fromPop&&history.state&&history.state.lfs)history.back()}
+window.addEventListener('popstate',()=>exitFs(true));
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&FS)exitFs()});
+async function ppTest(){
+ const o=$('#ppr'),b=($('#pp').value||S.pp||'').trim(),T='https://example.com/';
+ if(!/^https?:\/\//i.test(b)){o.textContent='آدرس را کامل و با https:// وارد کنید';return false}
+ o.textContent='در حال تست پراکسی...';let last='',net=0;
+ for(let i=0;i<PPM.length;i++){
+  try{
+   const r=await Promise.race([fetch(PPM[i](b,encodeURIComponent(T),T)),new Promise((_,j)=>setTimeout(()=>j(0),10000))]);
+   const x=await r.text();
+   if(r.ok&&/Example Domain/i.test(x)){S.ppm=i;try{localStorage.setItem('lindown',JSON.stringify(S))}catch(e){}o.textContent='✓ پراکسی شخصی سالم است و کار می‌کند';return true}
+   last='HTTP '+r.status
+  }catch(e){net++}
+ }
+ o.textContent=net===PPM.length?'✗ پاسخی نگرفتم: آدرس یا اینترنت و فیلترشکن را بررسی کنید. اگر Worker هدر Access-Control-Allow-Origin: * نفرستد، مرورگر خواندن پاسخ را مسدود می‌کند':'✗ پاسخ معتبر نگرفتم ('+last+'): Worker باید آدرس را از پارامتر url بگیرد و CORS را باز بگذارد';
+ return false}
+function bindPl(it,d){
+ const v=d.querySelector('video'),sk=d.querySelector('.sk'),tm=d.querySelector('.tm'),pb=d.querySelector('.pb'),pt=d.querySelector('.pt');
+ const pp=()=>sk.style.setProperty('--p',(sk.value/10)+'%');const T=x=>isFinite(x)?Math.floor(x/60)+':'+String(Math.floor(x%60)).padStart(2,'0'):'0:00';
+ v.ontimeupdate=()=>{const ok=isFinite(v.duration)&&v.duration>0;if(!sk.dragging&&ok){sk.value=v.currentTime/v.duration*1000;pp()}tm.textContent=T(v.currentTime)+(ok?' / '+T(v.duration):'')};
+ sk.oninput=()=>{sk.dragging=1;pp();if(isFinite(v.duration)&&v.duration>0)v.currentTime=sk.value/1000*v.duration};
+ sk.onchange=()=>{sk.dragging=0};
+ pb.onclick=()=>{v.paused?v.play().catch(()=>{}):v.pause()};
+ v.onplay=()=>{pb.textContent='⏸'};v.onpause=()=>{pb.textContent='▶'};
+ v.onerror=()=>{if(!v.getAttribute('src'))return;if(it.cur&&it.cur.yt)ytFail(it,d,'پخش پیش‌نمایش ممکن نشد.');else pt.textContent='پخش این مورد در این دستگاه ممکن نیست؛ می‌توانید آن را دانلود کنید'};
+ d.querySelector('.pq').onclick=()=>{if(FS&&FS.pl===pl){exitFs();return}v.pause();v.removeAttribute('src');v.load();d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();sk.value=0;pp();tm.textContent='0:00';d.querySelector('.pl').classList.remove('on','yt','pv');it.cur=null;mkNp(it)};
+ d.querySelector('.pd').onclick=()=>{if(it.cur)dlRes(it,it.cur)};
+ d.querySelector('.qp').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.q){it.yq=b.dataset.q;ytChips(it,d)}else if(b.dataset.qd){if(it.cur)dlRes(it,it.cur)}else if(b.dataset.qo){if(it.cur)window.open(it.cur.url,'_blank','noopener')}else if(b.dataset.qs){if(it.cur)ytStream(it,d,it.cur)}else if(b.dataset.qx)d.querySelector('.pq').click()};
+ d.querySelector('.yv').onclick=e=>{const b=e.target.closest('button');if(!b||!it.cur||!it.cur.yt)return;if(b.dataset.ys)ytSrv(it,d,it.cur);else if(b.dataset.qr)ytStream(it,d,it.cur)};
+ const pl=d.querySelector('.pl');
+ d.querySelector('.pf').onclick=()=>{FS&&FS.pl===pl?exitFs():enterFs(it,d)};
+ v.onclick=()=>{if(FS&&FS.pl===pl){pl.classList.toggle('ui');if(pl.classList.contains('ui'))hideLater(it)}};
+ v.onplaying=()=>{if(FS&&FS.pl===pl)hideLater(it)};
+ d.querySelector('.pc').onpointerdown=()=>{if(FS){it.pcd=1;clearTimeout(it.ht)}};['pointerup','pointercancel'].forEach(n=>pl.addEventListener(n,()=>{if(it.pcd){it.pcd=0;if(FS)hideLater(it)}}));
+ v.onloadedmetadata=v.onresize=fsRot;it.v=v}
+const YQ=[['best','بهترین'],['1080p','1080p'],['720p','720p'],['480p','480p'],['360p','360p'],['audio','فقط صدا (MP3)']];
+const EMB=/^https?:$/.test(location.protocol),PL0=['https://pipedapi.kavin.rocks','https://api.piped.private.coffee','https://pipedapi.adminforge.de'];
+const hgt=x=>+x.height||+String(x.quality||'').replace(/\D.*$/,'')||0,mtp=x=>String(x.mimeType||'')+' '+String(x.format||'');
+async function ytPS(c,id,au){
+ if(!ytPiped.L){try{const a=await (await try1(c,'https://piped-instances.kavin.rocks/',4000)).json();ytPiped.L=[...new Set((Array.isArray(a)?a:[]).filter(x=>x&&x.api_url).sort((x,y)=>(+y.uptime_24h||0)-(+x.uptime_24h||0)).slice(0,5).map(x=>String(x.api_url).replace(/\/$/,'')).concat(PL0))]}catch(e){if(c.ac.signal.aborted)throw e}}
+ return first((ytPiped.L||PL0).slice(0,8).map(b=>async()=>{
+   const r=await try1(c,b+'/streams/'+id,9000);if(!r.ok)throw new Error('HTTP '+r.status);
+   const j=await r.json(),A=(j.audioStreams||[]).filter(x=>x&&x.url),V=(j.videoStreams||[]).filter(x=>x&&x.url&&!x.videoOnly);let u='';
+   if(au){const m=A.filter(x=>/mp4|m4a/i.test(mtp(x))),L=(m.length?m:A).sort((x,y)=>(+y.bitrate||0)-(+x.bitrate||0));u=L[0]?L[0].url:''}
+   else{const m=V.filter(x=>/mp4/i.test(mtp(x))),L=(m.length?m:V).sort((x,y)=>hgt(y)-hgt(x)),lo=L.filter(x=>hgt(x)<=480);u=(lo[0]||L[L.length-1]||{}).url||j.hls||''}
+   if(!u)throw new Error('x');return u}))}
+function ytReset(it,d){
+ it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();clearTimeout(it.pwd);
+ const c={ac:new AbortController()};it.pac=c.ac;
+ try{it.v.pause();it.v.removeAttribute('src');it.v.load()}catch(e){}
+ d.querySelector('.pl').classList.remove('pv');
+ return c}
+function ytPlayUrl(it,d,r,u){
+ const au=r.k==='صوت',v=it.v,k=it.ytk,yv=d.querySelector('.yv');yv.innerHTML='<div class="ys">'+dots('در حال بارگذاری ویدئو...')+'</div>';
+ v.style.display=au?'none':'block';d.querySelector('.pf').style.display=au?'none':'';
+ d.querySelector('.pl').classList.add('pv');
+ clearTimeout(it.pwd);const rm=()=>{v.removeEventListener('loadeddata',ok);v.removeEventListener('playing',ok)},t=setTimeout(()=>{rm();if(it.ytk===k)ytFail(it,d,'ویدئو تا ۲۵ ثانیه شروع به پخش نشد (سرور پاسخ نمی‌دهد یا فایل قابل پخش نیست).')},25000),ok=()=>{clearTimeout(t);rm();if(it.ytk===k)yv.innerHTML=''};
+ it.pwd=t;v.addEventListener('loadeddata',ok);v.addEventListener('playing',ok);v.src=u;v.play().catch(()=>{})}
+function ytFail(it,d,m){
+ try{it.v.pause();it.v.removeAttribute('src');it.v.load()}catch(e){}
+ d.querySelector('.pl').classList.remove('pv');
+ d.querySelector('.yv').innerHTML='<div class="ys">'+esc(m)+'<div class="qa"><button type="button" class="pri" data-ys="1">پیش‌نمایش از سرور (کندتر)</button><button type="button" data-qr="1">تلاش دوباره</button></div></div>'}
+async function ytStream(it,d,r){
+ const c=ytReset(it,d),k=it.ytk;
+ d.querySelector('.yv').innerHTML='<div class="ys">'+dots('در حال آماده‌سازی پیش‌نمایش...')+'</div>';
+ try{const u=await ytPS(c,r.yt,r.k==='صوت');if(it.ytk!==k)return;ytPlayUrl(it,d,r,u)}
+ catch(e){if(it.ytk!==k||c.ac.signal.aborted)return;ytFail(it,d,'پیش‌نمایش سریع در دسترس نیست'+(e&&e.message&&e.message!=='x'?' ('+e.message+')':'')+'.')}}
+async function ytSrv(it,d,r){
+ const c=ytReset(it,d),k=it.ytk,yv=d.querySelector('.yv'),t0=Date.now();let to=0;
+ const tt=setTimeout(()=>{to=1;c.ac.abort()},100000),tk2=setInterval(()=>{if(it.ytk!==k||c.ac.signal.aborted){clearInterval(tk2);return}yv.innerHTML='<div class="ys">'+dots(c.t||'در حال ارسال درخواست به سرور...')+' • '+Math.floor((Date.now()-t0)/1000)+' ثانیه</div>'},1000);
+ c.onp=t=>{c.t=t};yv.innerHTML='<div class="ys">'+dots('در حال ارسال درخواست به سرور...')+'</div>';
+ try{
+  if(!API()||!/\/api\/v1\//.test(S.api))throw new Error('برای پیش‌نمایش از سرور باید API در تنظیمات فعال باشد');
+  const u=await wdGet(c,r.url,r.k==='صوت'?'audio':'360p');if(it.ytk!==k)return;ytPlayUrl(it,d,r,u)}
+ catch(e){if(it.ytk!==k||(c.ac.signal.aborted&&!to))return;ytFail(it,d,to?'سرور تا ۱۰۰ ثانیه پاسخی نداد؛ ممکن است سرور API خاموش، شلوغ یا در دسترس نباشد.':msg(e))}finally{clearTimeout(tt);clearInterval(tk2)}}
+function ytChips(it,d){
+ const au=(it.cur||{}).k==='صوت';
+ d.querySelector('.qp').innerHTML=(au?'<div class="qn">فایل صوتی همیشه با بالاترین کیفیت ممکن دانلود می‌شود.</div>':'<div class="qn">کیفیت دانلود را انتخاب کنید:</div><div class="qc">'+YQ.map(a=>'<button type="button" data-q="'+a[0]+'" class="'+(it.yq===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>')+'<div class="qa"><button type="button" class="pri" data-qd="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>دانلود</button>'+(EMB?'<button type="button" data-qs="1">پخش‌کننده برنامه</button>':'')+'<button type="button" data-qo="1">باز کردن در یوتیوب</button><button type="button" data-qx="1">بستن</button></div>'+(au?'':'<div class="qn">اگر سرور API از کیفیت انتخابی پشتیبانی نکند، بهترین کیفیت موجود دانلود می‌شود.</div>')+(EMB?'<div class="qn">اگر پخش‌کننده یوتیوب خطای «Sign in to confirm you’re not a bot» داد، دکمه‌ی «پخش‌کننده برنامه» را بزنید.</div>':'')}
+function toPl(it){
+ const d=document.getElementById('i'+it.id),pl=d&&d.querySelector('.pl');if(!pl)return;
+ requestAnimationFrame(()=>{try{pl.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){pl.scrollIntoView(true)}})}
+function ytShow(it,d,r){
+ ytReset(it,d);
+ it.yq=r.k==='صوت'?'audio':(S.yq&&S.yq!=='audio'?S.yq:'best');
+ d.querySelector('.pt').textContent=(r.k==='صوت'?'🎵 ':'🎬 ')+r.t;
+ const pl=d.querySelector('.pl');pl.classList.add('on','yt');ytChips(it,d);
+ if(EMB)d.querySelector('.yv').innerHTML='<iframe src="https://www.youtube.com/embed/'+r.yt+'?autoplay=1&playsinline=1&rel=0" title="پیش‌نمایش" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+ else ytStream(it,d,r);
+ toPl(it)}
+async function play(it,k){
+ const r=(it.res||[])[k];if(!r)return;
+ items.forEach(x=>{if(x.v&&(x===it||x.cur))stopPv(x)});it.cur=r;mkNp(it);
+ const d=document.getElementById('i'+it.id),v=it.v,pt=d.querySelector('.pt');
+ if(r.yt){ytShow(it,d,r);return}d.querySelector('.pl').classList.add('on');d.querySelector('.pl').classList.remove('yt','pv');d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();pt.textContent='در حال آماده‌سازی...';toPl(it);const tk=it.ytk;
+ try{if(r.ia&&!r.url)r.url=await iaFile(it,r.ia)}catch(e){if(it.ytk===tk)pt.textContent=msg(e);return}
+ if(it.ytk!==tk)return;
+ v.style.display=r.k==='صوت'?'none':'block';d.querySelector('.pf').style.display=r.k==='صوت'?'none':'';
+ pt.textContent=(r.k==='صوت'?'🎵 ':'🎬 ')+r.t;
+ v.src=r.url;v.play().catch(()=>{pt.textContent='برای پخش دکمه ▶ را بزنید'})}
+function stopPv(it){
+ if(!it.v)return;
+ if(FS&&FS.it===it)exitFs();
+ try{it.v.pause();it.v.removeAttribute('src');it.v.load()}catch(e){}
+ it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();clearTimeout(it.pwd);it.cur=null;mkNp(it);
+ const d=document.getElementById('i'+it.id);if(!d)return;
+ const y=d.querySelector('.yv');if(y)y.innerHTML='';
+ const pl=d.querySelector('.pl');if(pl)pl.classList.remove('on','yt','pv');
+ const sk=d.querySelector('.sk');if(sk){sk.value=0;sk.style.setProperty('--p','0%')}
+ const tm=d.querySelector('.tm');if(tm)tm.textContent='0:00'}
+function newJob(p,r){
+ if(r.j&&items.includes(r.j)&&r.j.st!=='err'&&r.j.st!=='cancel'&&!(r.yt&&r.j.st==='done')){toast('این مورد قبلاً به دانلودها اضافه شده است');return null}
+ const j={id:++seq,url:r.url||'',name:'',st:'idle',pct:-1,txt:'',sp:'',err:'',job:1};
+ items.push(j);r.j=j;
+ const el=mk(j);el.classList.add('job');
+ const dl=document.getElementById('i'+p.id).querySelector('.dls');
+ if(!dl.querySelector('.tg')){const g=document.createElement('button');g.className='tg';g.textContent='▾ جمع کردن دانلودها';g.onclick=()=>{dl.classList.toggle('cl2');g.textContent=dl.classList.contains('cl2')?'◂ نمایش دانلودها':'▾ جمع کردن دانلودها'};dl.prepend(g)}
+ dl.appendChild(el);
+ el.querySelector('input').value=j.url;all();return j}
+async function dlRes(p,r){
+ if(r.yt&&!API()){toast('برای دانلود از یوتیوب باید API در تنظیمات فعال باشد');return}const j=newJob(p,r);if(!j)return;toast('دانلود شروع شد');
+ if(r.ia&&!r.url){
+  j.ac=new AbortController();j.st='run';j.txt='در حال یافتن فایل...';j.pct=-1;sync(j);
+  try{r.url=await iaFile(j,r.ia)}catch(e){j.st=j.ac.signal.aborted?'cancel':'err';j.err=msg(e);sync(j);return}
+ }
+ j.st='idle';j.hint=r.h||'';j.qv=r.yt?(r.k==='صوت'?'audio':(p.yq||S.yq||'best')):'';j.url=r.url;document.querySelector('#i'+j.id+' input').value=r.url;go(j)}
+async function resUrl(it,k){const r=(it.res||[])[k];if(!r)return'';try{if(r.ia&&!r.url)r.url=await iaFile(it,r.ia)}catch(e){toast(msg(e));return''}return r.url||''}
+async function cpLink(it,k){const u=await resUrl(it,k);if(!u)return;try{await navigator.clipboard.writeText(u);toast('لینک کپی شد')}catch(e){const a=document.createElement('textarea');a.value=u;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('لینک کپی شد')}catch(x){toast(u)}a.remove()}}
+async function opLink(it,k){const u=await resUrl(it,k);if(!u)return;const l=document.createElement('a');l.href=u;l.target='_blank';l.rel='noopener';document.body.appendChild(l);l.click();l.remove()}
+const choose=(it,k)=>{const r=(it.res||[])[k];if(r)dlRes(it,r)};
+
+function mk(it){
+ const d=document.createElement('div');d.className='card';d.id='i'+it.id;d.dataset.st=it.st;
+ d.innerHTML='<div class="fl"><div class="iw"><input type="url" inputmode="url" dir="ltr" autocomplete="off" placeholder="لینک دانلود، یا نام فیلم، سریال و آهنگ"><button class="cl" type="button" aria-label="پاک کردن">×</button></div><button class="pri go">دانلود</button></div><div class="bar"><i></i><b class="bp"></b></div><div class="nm"></div><div class="inf"><span class="t1"><span class="ta"></span><span class="dt"><i>.</i><i>.</i><i>.</i></span><span class="tz"></span></span><span class="t2"></span></div><div class="er"></div><div class="acts"></div><div class="pl"><video playsinline preload="metadata"></video><div class="yv"></div><div class="pt"></div><div class="qp"></div><div class="pc"><button class="pb" type="button" aria-label="پخش و توقف">▶</button><input type="range" class="sk" min="0" max="1000" value="0" aria-label="نوار زمان"><span class="tm">0:00</span><button class="pf" type="button" aria-label="تمام صفحه">⛶</button><button class="pd" type="button" aria-label="دانلود"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button><button class="pq" type="button" aria-label="بستن پخش">✕</button></div></div><div class="spn"><div class="rg"><i></i><b>0%</b></div><span>در حال جستجو<span class="dt"><i>.</i><i>.</i><i>.</i></span></span></div><div class="dls"></div><div class="res"></div>';
+ const inp=d.querySelector('input');
+ const iw=d.querySelector('.iw');
+ inp.oninput=()=>{it.url=inp.value;sync(it);if(!inp.value.trim()){killSearch(it);it.res=[];rr(it);stopPv(it);sync(it)}};
+ d.querySelector('.cl').onclick=()=>{
+  if(it.st==='run')return;
+  killSearch(it);stopPv(it);inp.value='';it.url='';it.res=[];it.tab='all';it.err='';it.name='';it.st='idle';
+  if(it.href){URL.revokeObjectURL(it.href);it.href=''}it.blob=null;
+  rr(it);sync(it);inp.focus()};
+ inp.onkeydown=e=>{if(e.key==='Enter'){if(it.busy)killSearch(it);go(it)}};
+ d.querySelector('.go').onclick=()=>go(it);
+ d.querySelector('.res').onclick=e=>{const sc=e.target.closest('[data-s]');if(sc){const i=+sc.dataset.s;it.top=it.top===i?-1:i;pinSrc(it);it.lim=PG;rr(it,it.lm);e.currentTarget.scrollTop=0;return}const b=e.target.closest('button');if(!b){const w=e.target.closest('.rw');if(w)play(it,+w.dataset.k);return}if(b.dataset.tb){it.tab=b.dataset.tb;it.lim=PG;rr(it,it.lm);e.currentTarget.scrollTop=0;return}if(b.dataset.c){it.col=!it.col;e.currentTarget.classList.toggle('col',!!it.col);b.textContent=cbt(it);if(!it.col)sched(it);return}if(b.dataset.m){more(it);return}if(b.dataset.x){it.skip.forEach(r=>r.wk=1);it.res=(it.res||[]).concat(it.skip);it.skip=[];rr(it,'!موارد کنار گذاشته‌شده اضافه شدند (کمرنگ): فایل صوتی در جستجوی فیلم، یا محتوای مذهبی.\n'+(it.sm||''));return}if(b.dataset.w){it.weak.forEach(r=>r.wk=1);it.res=(it.res||[]).concat(it.weak);it.weak=[];rr(it,'!موارد کم‌ارتباط اضافه شدند (کمرنگ)؛ عنوان آن‌ها با عبارت جستجو نمی‌خواند.\n'+(it.sm||it.lm||''));return}if(b.dataset.cp!==undefined){cpLink(it,+b.dataset.cp);return}if(b.dataset.op!==undefined){opLink(it,+b.dataset.op);return}if(b.dataset.p!==undefined)play(it,+b.dataset.p);else choose(it,+b.dataset.k)};
+ bindPl(it,d);
+ d.querySelector('.res').onscroll=e=>{lm(it,e.currentTarget);sched(it)};
+ d.querySelector('.acts').onclick=e=>{const b=e.target.closest('button');if(b)act(it,b.dataset.a)};
+ return d}
+
+function sync(it){
+ const d=document.getElementById('i'+it.id);if(!d)return;
+ const r=it.st==='run',g=d.querySelector('.go');
+ d.dataset.st=it.st;
+ d.querySelector('.iw').classList.toggle('has',!!d.querySelector('input').value&&!r);
+ const iv=d.querySelector('input').value;const bz=r||!!it.busy;g.textContent=bz?'توقف':(iv.trim()&&!/https?:\/\//i.test(iv)?'جستجو':'دانلود');g.className=bz?'go stop':'pri go';
+ const b=d.querySelector('.bar');b.className='bar'+(r&&it.pct<0?' ind':'');
+ b.firstElementChild.style.width=it.st==='done'?'100%':(r&&it.pct>=0?it.pct.toFixed(1)+'%':'');
+ b.querySelector('.bp').textContent=it.st==='done'?(it.nat?'':'100%'):(r&&it.pct>=0?Math.floor(it.pct)+'%':'');
+ d.querySelector('.nm').textContent=it.name||'';
+ const t1=d.querySelector('.t1');
+ {const s1=it.st==='done'?(it.nat?(it.nat===2?'✓ لینک برای مرورگر سیستم فرستاده شد':'✓ به دانلودر دستگاه سپرده شد'):'✓ دانلود کامل شد'):it.st==='cancel'?'دانلود متوقف شد':r?(it.txt||''):'';let a=s1,z='',dd=0;
+  if(r){const m=/\.\.\.|…/.exec(s1);if(m){a=s1.slice(0,m.index);z=s1.slice(m.index+m[0].length)}else{a='در حال دانلود';z=' '+s1}dd=1}
+  t1.querySelector('.ta').textContent=a;t1.querySelector('.tz').textContent=z;t1.querySelector('.dt').style.display=dd?'inline-block':'none'}
+ t1.className='t1'+(it.st==='done'?' ok':'');
+ d.querySelector('.t2').textContent=it.st==='done'?(it.nat?'':fmt(it.size)):(r?it.sp:'');
+ d.querySelector('.er').textContent=it.st==='err'?it.err:'';
+ const key=it.st+items.length;
+ if(d._k!==key){d._k=key;
+  d.querySelector('.acts').innerHTML=(it.st==='done'?(it.nat?'<button data-a="o">دانلود دوباره</button><button data-a="c">'+((it.vp?it.vp==='px':S.dlr==='px')?'دانلود مستقیم (بدون پراکسی)':'دانلود با پراکسی')+'</button><button data-a="b">دانلود با مرورگر سیستم</button>':'<button data-a="s">ذخیره دوباره</button>'):'')+(it.st==='err'?'<button data-a="o">دانلود با مرورگر</button>':'')+(it.st!=='run'&&items.length>1?'<button data-a="d">حذف فیلد</button>':'');
+ }}
+const all=()=>items.forEach(sync);
+
+function killSearch(it){it.tk=(it.tk||0)+1;if(it.busy){try{it.ac.abort()}catch(e){}}it.busy=0;it.stp=null;clearInterval(it.pi);const sp=document.querySelector('#i'+it.id+' .spn');if(sp)sp.classList.remove('on')}
+function stopSearch(it){const f=it.stp;killSearch(it);if(f)f();else rr(it,it.sm||'');sync(it)}
+function go(it){
+ if(it.busy){stopSearch(it);return}
+ if(it.st==='run'){it.ac.abort();return}
+ const u=((it.url||'').match(/https?:\/\/[^\s"'<>]+/i)||[''])[0];
+ if(!u){const t=(it.url||'').trim();if(t.length>1){search(it,t);return}it.st='err';it.err='لینک یا نام ویدیو/آهنگ را وارد کنید';it.name='';sync(it);return}
+ learn(u);it.au=1;it.q=(it.url||'').replace(u,'').trim();it.res=[];it.col=0;it.lim=PG;rr(it);
+ it.url=u;document.querySelector('#i'+it.id+' input').value=u;
+ if(it.href){URL.revokeObjectURL(it.href);it.href=''}
+ it.blob=null;it.name='';it.fname=it.hint||'';it.hint='';
+ run(it)}
+
+function act(it,a){
+ if(a==='s')save(it);
+ else if(a==='o'&&it.dlu)natDl(it.dlu);else if(a==='o'){if(WVU)openExt(it.url);else{const l=document.createElement('a');l.href=it.url;l.target='_blank';l.rel='noopener';l.download='';document.body.appendChild(l);l.click();l.remove()}}
+ else if(a==='b')openExt(it.dlu||it.url);
+ else if(a==='c'){const cur=it.vp?it.vp:(S.dlr==='px'?'px':'dir');it.vp=cur==='px'?'dir':'px';(async()=>{const ok=await pxOk(it);const nm=it.name||lname(nameFrom(it.url,'',''));it.dlu=hoUrl(it.url,nm,it);nat(it,it.dlu);if(ok)toast(it.vp==='px'?'دانلود از مسیر پراکسی':'دانلود از مسیر مستقیم')})()}
+ else if(a==='d'){stopPv(it);killSearch(it);if(it.st==='run')it.ac.abort();if(it.href)URL.revokeObjectURL(it.href);items.splice(items.indexOf(it),1);const el=document.getElementById('i'+it.id),dl=el.parentNode;el.remove();if(dl&&dl.classList.contains('dls')&&!dl.querySelector('.job'))dl.innerHTML='';all()}}
+
+function newItem(){
+ const it={id:++seq,url:'',name:'',st:'idle',pct:-1,txt:'',sp:'',err:''};
+ items.push(it);$('#list').appendChild(mk(it));all();return it}
+$('#bplus').onclick=()=>{const it=newItem();document.querySelector('#i'+it.id+' input').focus()};
+
+$('#bset').onclick=()=>{$('#pp').value=S.pp||'';$('#ppon').checked=S.ppon!==false;$('#ppr').textContent='';$('#api').value=S.api;$('#apion').checked=S.apion!==false;$('#yq').value=S.yq||'480p';$('#dm').value=S.dm||'';$('#dlr').value=S.dlr||'dir';$('#pxon').checked=S.px!==false;hcl();$('#set').classList.add('on')};
+$('#scl').onclick=()=>{hcl();$('#set').classList.remove('on')};
+$('#set').addEventListener('click',e=>{if(e.target.id==='set')$('#set').classList.remove('on')});
+$('#ssv').onclick=()=>{
+ S.api=$('#api').value.trim();S.apion=$('#apion').checked;S.yq=$('#yq').value;S.dm=$('#dm').value;S.dlr=$('#dlr').value;WVU=wvDet();S.pp=$('#pp').value.trim();S.ppon=$('#ppon').checked;PP.bad=0;PP.t=0;if(S.pp&&S.ppon)ppTest();S.px=$('#pxon').checked;
+ try{localStorage.setItem('lindown',JSON.stringify(S))}catch(e){}
+ $('#set').classList.remove('on');toast('تنظیمات ذخیره شد')};
+
+const hcl=()=>$('#set').querySelectorAll('.ib.on,p.h.on').forEach(n=>n.classList.remove('on'));
+$('#set').addEventListener('click',e=>{const b=e.target.closest('.ib');
+ if(b){e.preventDefault();const o=!b.classList.contains('on');hcl();if(o){b.classList.add('on');$('#'+b.dataset.h).classList.add('on')}return}
+ if(!e.target.closest('p.h.on'))hcl()});
+$('#set').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('ib')){e.preventDefault();e.target.click()}});
+$('#ppt').onclick=async()=>{const ok=await ppTest();if(ok){PP.bad=0;PP.t=0}};
+newItem();
+if(S.pp&&S.ppon!==false)ppTest().then(ok=>{if(!ok){PP.bad=1;PP.t=Date.now()}});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.qa button');if(!b)return;b.classList.add('hit');setTimeout(()=>b.classList.remove('hit'),900)});
+</script>
+</body>
+</html>
