@@ -191,7 +191,7 @@ select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px sol
 <script>
 const $=s=>document.querySelector(s);
 /* نسخهٔ برنامه = سال(۲رقم).ماه.روز.ساعت.دقیقه (میلادی، بدون صفر ابتدایی) — با هر بار تولید فایل جدید به‌روز می‌شود */
-const VER='26.11.4.11.46';$('#ver').textContent=VER;
+const VER='26.11.5.20.10';$('#ver').textContent=VER;
 const DEFSITES='nex1music.ir\nmusicdel.ir\navamovie.ir\ndownloadha.com\ndigimoviez.com\nuptvs.com\ngisomusic.com\nbehplay.com\nbehtaraneh.com\naftabmusic.com\nshabamusic.com\ngitarmuzic.com\nmusicrooz.com\nzardis.net\nremiixbaz.com\ntfilm12.ir\nbandmoviez.one\nnetpaak.ir';
 const DEFPP='https://royal-mode-d4ce.netroz82.workers.dev/';
 const DEFAPI='https://save.brianrianrehan.com/api/v1/download';
@@ -1034,7 +1034,7 @@ async function dlRes(p,r){
   j.ac=new AbortController();j.st='run';j.txt='در حال یافتن فایل...';j.pct=-1;sync(j);
   try{r.url=await iaFile(j,r.ia)}catch(e){j.st=j.ac.signal.aborted?'cancel':'err';j.err=msg(e);sync(j);return}
  }
- j.st='idle';j.hint=r.h||'';j.qv=r.yt?(r.k==='صوت'?'audio':(p.yq||S.yq||'best')):'';j.url=r.url;document.querySelector('#i'+j.id+' input').value=r.url;go(j)}
+ j.st='idle';j.hint=r.h||'';j.qv=r.yt?(r.k==='صوت'?'audio':(p.yq||S.yq||'best')):'';j.url=r.url;document.querySelector('#i'+j.id+' input').value=r.url;j.dl=1;go(j)}
 async function resUrl(it,k){const r=(it.res||[])[k];if(!r)return'';try{if(r.ia&&!r.url)r.url=await iaFile(it,r.ia)}catch(e){toast(msg(e));return''}return r.url||''}
 async function cpLink(it,k){const u=await resUrl(it,k);if(!u)return;try{await navigator.clipboard.writeText(u);toast('لینک کپی شد')}catch(e){const a=document.createElement('textarea');a.value=u;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('لینک کپی شد')}catch(x){toast(u)}a.remove()}}
 async function opLink(it,k){const u=await resUrl(it,k);if(!u)return;const l=document.createElement('a');l.href=u;l.target='_blank';l.rel='noopener';document.body.appendChild(l);l.click();l.remove()}
@@ -1089,6 +1089,13 @@ function go(it){
  if(it.st==='run'){it.ac.abort();return}
  const u=((it.url||'').match(/https?:\/\/[^\s"'<>]+/i)||[''])[0];
  if(!u){const t=(it.url||'').trim();if(t.length>1){search(it,t);return}it.st='err';it.err='لینک یا نام ویدیو/آهنگ را وارد کنید';it.name='';sync(it);return}
+ if(!it.dl&&/^https?:/i.test(u)&&FILE_RE.test(u)&&!/\.m3u8?([?#]|$)/i.test(u)){
+  const r=mp({t:nameFrom(u,'','')||u,u});r.d=(u.match(/^https?:\/\/([^\/?#]+)/i)||['',''])[1];
+  learn(u);it.url=u;document.querySelector('#i'+it.id+' input').value=u;killSearch(it);stopPv(it);
+  it.au=1;it.ss=null;it.top=-1;it.tab='all';it.res=[r];it.weak=[];it.skip=[];it.col=0;it.lim=PG;
+  it.st='idle';it.err='';it.name='';it.nat=0;it.dlu='';sync(it);
+  rr(it,'لینک مستقیم: با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
+ it.dl=0;
  learn(u);it.au=1;it.q=(it.url||'').replace(u,'').trim();it.res=[];it.col=0;it.lim=PG;rr(it);
  it.url=u;document.querySelector('#i'+it.id+' input').value=u;
  if(it.href){URL.revokeObjectURL(it.href);it.href=''}
@@ -1119,6 +1126,9 @@ const hcl=()=>$('#set').querySelectorAll('.ib.on,p.h.on').forEach(n=>n.classList
 $('#set').addEventListener('click',e=>{const b=e.target.closest('.ib');
  if(b){e.preventDefault();const o=!b.classList.contains('on');hcl();if(o){b.classList.add('on');$('#'+b.dataset.h).classList.add('on')}return}
  if(!e.target.closest('p.h.on'))hcl()});
+(()=>{const st=$('#set');let HB=0;
+ new MutationObserver(()=>{const on=st.classList.contains('on');if(on&&!HB){try{history.pushState({set:1},'');HB=1}catch(e){}}else if(!on&&HB){HB=0;try{history.back()}catch(e){}}}).observe(st,{attributes:true,attributeFilter:['class']});
+ addEventListener('popstate',()=>{if(HB&&st.classList.contains('on')){HB=0;hcl();st.classList.remove('on')}})})();
 $('#set').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('ib')){e.preventDefault();e.target.click()}});
 $('#ppt').onclick=async()=>{const ok=await ppTest();if(ok){PP.bad=0;PP.t=0}};
 newItem();
