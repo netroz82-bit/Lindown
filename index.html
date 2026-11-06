@@ -196,7 +196,7 @@ select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px sol
 <script>
 const $=s=>document.querySelector(s);
 /* نسخهٔ برنامه = سال(۲رقم).ماه.روز.ساعت.دقیقه (میلادی، بدون صفر ابتدایی) — با هر بار تولید فایل جدید به‌روز می‌شود */
-const VER='26.11.6.15.3';$('#ver').textContent=VER;
+const VER='26.11.6.20.10';$('#ver').textContent=VER;
 const DEFSITES='nex1music.ir\nmusicdel.ir\navamovie.ir\ndownloadha.com\ndigimoviez.com\nuptvs.com\ngisomusic.com\nbehplay.com\nbehtaraneh.com\naftabmusic.com\nshabamusic.com\ngitarmuzic.com\nmusicrooz.com\nzardis.net\nremiixbaz.com\ntfilm12.ir\nbandmoviez.one\nnetpaak.ir';
 const DEFPP='https://royal-mode-d4ce.netroz82.workers.dev/';
 const DEFAPI='https://save.brianrianrehan.com/api/v1/download';
@@ -457,6 +457,18 @@ function showDirect(it,r,label){
  learn(r.url);it.url=r.url;const inp=document.querySelector('#i'+it.id+' input');if(inp)inp.value=r.url;killSearch(it);stopPv(it);
  it.au=1;it.ss=null;it.top=-1;it.tab='all';it.res=[r];it.weak=[];it.skip=[];it.col=0;it.lim=PG;
  it.st='idle';it.err='';it.name='';it.nat=0;it.dlu='';sync(it);rr(it,label)}
+const TTS=/^https?:\/\/(?:(?:vm|vt)\.tiktok\.com\/[\w-]+|(?:www\.)?tiktok\.com\/t\/[\w-]+)/i;
+async function ttResolve(it,u){
+ for(const q of ['https://www.tiktok.com/oembed?url='+encodeURIComponent(u),u]){
+  let txt='';
+  try{txt=await (await get(it,q)).text()}catch(e){if(it.ac.signal.aborted)return null;continue}
+  const id=(/data-video-id=\\?"(\d{10,25})/.exec(txt)||/\/video\/(\d{10,25})/.exec(txt)||[])[1];
+  if(!id)continue;
+  const cite=((/cite=\\?"([^"\\]+)/.exec(txt)||[])[1]||'').split('?')[0];
+  let ti='';try{ti=JSON.parse(txt).title||''}catch(e){}
+  return{t:(ti||'ویدیوی تیک‌تاک ('+id+')').slice(0,90),k:'ویدیو',url:/^https?:\/\//.test(cite)?cite:u,h:'TikTok '+id,tt:id,d:'tiktok.com',pb:2}
+ }
+ return null}
 function sniffMedia(u,sig){return new Promise(res=>{
  const v=document.createElement('video');let done=0,t=0;
  const fin=x=>{if(done)return;done=1;clearTimeout(t);v.onloadedmetadata=v.onerror=null;try{v.removeAttribute('src');v.load()}catch(e){}res(x)};
@@ -469,6 +481,13 @@ function sniffMedia(u,sig){return new Promise(res=>{
 async function run(it){
  it.sr=0;it.nat=0;it.dlu='';it.ac=new AbortController();it.st='run';it.err='';it.pct=-1;it.txt='در حال اتصال...';it.sp='';sync(it);
  try{
+  if(!it.nsn&&TTS.test(it.url)){
+   it.txt='در حال بررسی لینک تیک‌تاک...';sync(it);
+   const m=await ttResolve(it,it.url);
+   if(it.ac.signal.aborted)throw new Error('cancel');
+   if(m){showDirect(it,m,'ویدیوی تیک‌تاک: با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
+   toast('پیش‌نمایش این لینک ممکن نشد؛ دانلود مستقیم انجام می‌شود')
+  }
   if(!it.nsn&&/^https?:/i.test(it.url)&&!FILE_RE.test(it.url)&&!APIS.test(it.url)&&!/\.m3u8?([?#]|$)/i.test(it.url)&&!/^https?:\/\/(?:t|telegram)\.me\//i.test(it.url)){
    it.txt='در حال بررسی لینک...';sync(it);
    const m=await sniffMedia(it.url,it.ac.signal);
