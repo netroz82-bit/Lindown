@@ -91,6 +91,11 @@ label{display:block;margin:12px 0 4px;font-weight:700}
 p.h[data-hp]{display:none}p.h[data-hp].on{display:block}
 .ib{display:inline-grid;place-items:center;flex:none;width:20px;height:20px;margin-inline-start:8px;border-radius:50%;border:1px solid var(--o);color:var(--o);font:italic 700 12px/1 Georgia,serif;cursor:pointer;vertical-align:middle;user-select:none}
 .ib.on{background:var(--o);color:#111}
+.xf{display:none}
+.pl.fs.yt:not(.pv) .yv{position:absolute;inset:0;z-index:1}
+.pl.fs.yt:not(.pv) .yv iframe{width:100%;height:100%;max-height:none;aspect-ratio:auto;border-radius:0}
+.pl.fs.yt:not(.pv) .xf{display:grid;place-items:center;position:absolute;top:calc(env(safe-area-inset-top,0px) + 8px);right:10px;z-index:5;width:42px;height:42px;padding:0;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:18px}
+.yv iframe.ig{aspect-ratio:auto;height:540px;max-height:none;background:#fff}
 .rw.np .dl{border-color:var(--o);box-shadow:0 0 0 1px var(--o) inset;background:rgba(255,122,0,.1)}.rw.np .rt::before{content:'▶ ';color:var(--o)}
 #toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);left:50%;transform:translateX(-50%);background:var(--o);color:#111;padding:8px 18px;border-radius:30px;font-weight:700;display:none;z-index:40;max-width:90%;text-align:center}
 .mt{display:flex;gap:10px;direction:ltr;white-space:nowrap;flex:none}.mt .uk{opacity:.7}
@@ -191,7 +196,7 @@ select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px sol
 <script>
 const $=s=>document.querySelector(s);
 /* نسخهٔ برنامه = سال(۲رقم).ماه.روز.ساعت.دقیقه (میلادی، بدون صفر ابتدایی) — با هر بار تولید فایل جدید به‌روز می‌شود */
-const VER='26.11.5.20.10';$('#ver').textContent=VER;
+const VER='26.11.6.6.14';$('#ver').textContent=VER;
 const DEFSITES='nex1music.ir\nmusicdel.ir\navamovie.ir\ndownloadha.com\ndigimoviez.com\nuptvs.com\ngisomusic.com\nbehplay.com\nbehtaraneh.com\naftabmusic.com\nshabamusic.com\ngitarmuzic.com\nmusicrooz.com\nzardis.net\nremiixbaz.com\ntfilm12.ir\nbandmoviez.one\nnetpaak.ir';
 const DEFPP='https://royal-mode-d4ce.netroz82.workers.dev/';
 const DEFAPI='https://save.brianrianrehan.com/api/v1/download';
@@ -911,6 +916,7 @@ function exitFs(fromPop){
  try{screen.orientation.unlock()}catch(e){}
  if(!fromPop&&history.state&&history.state.lfs)history.back()}
 window.addEventListener('popstate',()=>exitFs(true));
+window.addEventListener('message',e=>{if(!FS||!FS.pl.classList.contains('yt'))return;let h='';try{h=new URL(e.origin).hostname}catch(x){return}if(!/(^|\.)youtube(-nocookie)?\.com$/.test(h))return;let j=e.data;try{if(typeof j==='string')j=JSON.parse(j)}catch(x){return}if(j&&((j.event==='onStateChange'&&j.info===0)||(j.event==='infoDelivery'&&j.info&&j.info.playerState===0)))exitFs()});
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&FS)exitFs()});
 async function ppTest(){
  const o=$('#ppr'),b=($('#pp').value||S.pp||'').trim(),T='https://example.com/';
@@ -937,7 +943,7 @@ function bindPl(it,d){
  v.onerror=()=>{if(!v.getAttribute('src'))return;if(it.cur&&it.cur.yt)ytFail(it,d,'پخش پیش‌نمایش ممکن نشد.');else pt.textContent='پخش این مورد در این دستگاه ممکن نیست؛ می‌توانید آن را دانلود کنید'};
  d.querySelector('.pq').onclick=()=>{if(FS&&FS.pl===pl){exitFs();return}v.pause();v.removeAttribute('src');v.load();d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();sk.value=0;pp();tm.textContent='0:00';d.querySelector('.pl').classList.remove('on','yt','pv');it.cur=null;mkNp(it)};
  d.querySelector('.pd').onclick=()=>{if(it.cur)dlRes(it,it.cur)};
- d.querySelector('.qp').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.q){it.yq=b.dataset.q;ytChips(it,d)}else if(b.dataset.qd){if(it.cur)dlRes(it,it.cur)}else if(b.dataset.qo){if(it.cur)window.open(it.cur.url,'_blank','noopener')}else if(b.dataset.qs){if(it.cur)ytStream(it,d,it.cur)}else if(b.dataset.qx)d.querySelector('.pq').click()};
+ d.querySelector('.qp').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.q){it.yq=b.dataset.q;ytChips(it,d)}else if(b.dataset.qd){if(it.cur)dlRes(it,it.cur)}else if(b.dataset.qo){if(it.cur)window.open(it.cur.url,'_blank','noopener')}else if(b.dataset.qs){if(it.cur)ytStream(it,d,it.cur)}else if(b.dataset.qf)enterFs(it,d);else if(b.dataset.qx)d.querySelector('.pq').click()};d.querySelector('.xf').onclick=()=>exitFs();
  d.querySelector('.yv').onclick=e=>{const b=e.target.closest('button');if(!b||!it.cur||!it.cur.yt)return;if(b.dataset.ys)ytSrv(it,d,it.cur);else if(b.dataset.qr)ytStream(it,d,it.cur)};
  const pl=d.querySelector('.pl');
  d.querySelector('.pf').onclick=()=>{FS&&FS.pl===pl?exitFs():enterFs(it,d)};
@@ -987,7 +993,7 @@ async function ytSrv(it,d,r){
  catch(e){if(it.ytk!==k||(c.ac.signal.aborted&&!to))return;ytFail(it,d,to?'سرور تا ۱۰۰ ثانیه پاسخی نداد؛ ممکن است سرور API خاموش، شلوغ یا در دسترس نباشد.':msg(e))}finally{clearTimeout(tt);clearInterval(tk2)}}
 function ytChips(it,d){
  const au=(it.cur||{}).k==='صوت';
- d.querySelector('.qp').innerHTML=(au?'<div class="qn">فایل صوتی همیشه با بالاترین کیفیت ممکن دانلود می‌شود.</div>':'<div class="qn">کیفیت دانلود را انتخاب کنید:</div><div class="qc">'+YQ.map(a=>'<button type="button" data-q="'+a[0]+'" class="'+(it.yq===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>')+'<div class="qa"><button type="button" class="pri" data-qd="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>دانلود</button>'+(EMB?'<button type="button" data-qs="1">پخش‌کننده برنامه</button>':'')+'<button type="button" data-qo="1">باز کردن در یوتیوب</button><button type="button" data-qx="1">بستن</button></div>'+(au?'':'<div class="qn">اگر سرور API از کیفیت انتخابی پشتیبانی نکند، بهترین کیفیت موجود دانلود می‌شود.</div>')+(EMB?'<div class="qn">اگر پخش‌کننده یوتیوب خطای «Sign in to confirm you’re not a bot» داد، دکمه‌ی «پخش‌کننده برنامه» را بزنید.</div>':'')}
+ d.querySelector('.qp').innerHTML=(au?'<div class="qn">فایل صوتی همیشه با بالاترین کیفیت ممکن دانلود می‌شود.</div>':'<div class="qn">کیفیت دانلود را انتخاب کنید:</div><div class="qc">'+YQ.map(a=>'<button type="button" data-q="'+a[0]+'" class="'+(it.yq===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>')+'<div class="qa"><button type="button" class="pri" data-qd="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>دانلود</button>'+(EMB?'<button type="button" data-qf="1">⛶ تمام‌صفحه افقی</button><button type="button" data-qs="1">پخش‌کننده برنامه</button>':'')+'<button type="button" data-qo="1">باز کردن در یوتیوب</button><button type="button" data-qx="1">بستن</button></div>'+(au?'':'<div class="qn">اگر سرور API از کیفیت انتخابی پشتیبانی نکند، بهترین کیفیت موجود دانلود می‌شود.</div>')+(EMB?'<div class="qn">اگر پخش‌کننده یوتیوب خطای «Sign in to confirm you’re not a bot» داد، دکمه‌ی «پخش‌کننده برنامه» را بزنید.</div>':'')}
 function toPl(it){
  const d=document.getElementById('i'+it.id),pl=d&&d.querySelector('.pl');if(!pl)return;
  requestAnimationFrame(()=>{try{pl.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){pl.scrollIntoView(true)}})}
@@ -996,14 +1002,22 @@ function ytShow(it,d,r){
  it.yq=r.k==='صوت'?'audio':(S.yq&&S.yq!=='audio'?S.yq:'best');
  d.querySelector('.pt').textContent=(r.k==='صوت'?'🎵 ':'🎬 ')+r.t;
  const pl=d.querySelector('.pl');pl.classList.add('on','yt');ytChips(it,d);
- if(EMB)d.querySelector('.yv').innerHTML='<iframe src="https://www.youtube.com/embed/'+r.yt+'?autoplay=1&playsinline=1&rel=0" title="پیش‌نمایش" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+ if(EMB)d.querySelector('.yv').innerHTML='<iframe src="https://www.youtube.com/embed/'+r.yt+'?autoplay=1&playsinline=1&rel=0&enablejsapi=1" title="پیش‌نمایش" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
  else ytStream(it,d,r);
+ const fr=d.querySelector('.yv iframe');if(fr)fr.onload=()=>{try{fr.contentWindow.postMessage(JSON.stringify({event:'listening',id:1,channel:'widget'}),'*')}catch(e){}};
+ toPl(it)}
+function igShow(it,d,r){
+ ytReset(it,d);
+ d.querySelector('.pt').textContent='📷 '+r.t;
+ d.querySelector('.pl').classList.add('on','yt');
+ d.querySelector('.qp').innerHTML='<div class="qn">پیش‌نمایش از خود اینستاگرام؛ فقط پست‌های عمومی و بدون فیلترشکن ممکن است باز نشود.</div><div class="qa"><button type="button" class="pri" data-qd="1">دانلود</button><button type="button" data-qo="1">باز کردن در اینستاگرام</button><button type="button" data-qx="1">بستن</button></div>';
+ d.querySelector('.yv').innerHTML='<iframe class="ig" src="https://www.instagram.com/'+r.ig+'/embed/" title="پیش‌نمایش" allow="autoplay; encrypted-media; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
  toPl(it)}
 async function play(it,k){
  const r=(it.res||[])[k];if(!r)return;
  items.forEach(x=>{if(x.v&&(x===it||x.cur))stopPv(x)});it.cur=r;mkNp(it);
  const d=document.getElementById('i'+it.id),v=it.v,pt=d.querySelector('.pt');
- if(r.yt){ytShow(it,d,r);return}d.querySelector('.pl').classList.add('on');d.querySelector('.pl').classList.remove('yt','pv');d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();pt.textContent='در حال آماده‌سازی...';toPl(it);const tk=it.ytk;
+ if(r.yt){ytShow(it,d,r);return}if(r.ig){igShow(it,d,r);return}d.querySelector('.pl').classList.add('on');d.querySelector('.pl').classList.remove('yt','pv');d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();pt.textContent='در حال آماده‌سازی...';toPl(it);const tk=it.ytk;
  try{if(r.ia&&!r.url)r.url=await iaFile(it,r.ia)}catch(e){if(it.ytk===tk)pt.textContent=msg(e);return}
  if(it.ytk!==tk)return;
  v.style.display=r.k==='صوت'?'none':'block';d.querySelector('.pf').style.display=r.k==='صوت'?'none':'';
@@ -1042,7 +1056,7 @@ const choose=(it,k)=>{const r=(it.res||[])[k];if(r)dlRes(it,r)};
 
 function mk(it){
  const d=document.createElement('div');d.className='card';d.id='i'+it.id;d.dataset.st=it.st;
- d.innerHTML='<div class="fl"><div class="iw"><input type="url" inputmode="url" dir="ltr" autocomplete="off" placeholder="لینک دانلود، یا نام فیلم، سریال و آهنگ"><button class="cl" type="button" aria-label="پاک کردن">×</button></div><button class="pri go">دانلود</button></div><div class="bar"><i></i><b class="bp"></b></div><div class="nm"></div><div class="inf"><span class="t1"><span class="ta"></span><span class="dt"><i>.</i><i>.</i><i>.</i></span><span class="tz"></span></span><span class="t2"></span></div><div class="er"></div><div class="acts"></div><div class="pl"><video playsinline preload="metadata"></video><div class="yv"></div><div class="pt"></div><div class="qp"></div><div class="pc"><button class="pb" type="button" aria-label="پخش و توقف">▶</button><input type="range" class="sk" min="0" max="1000" value="0" aria-label="نوار زمان"><span class="tm">0:00</span><button class="pf" type="button" aria-label="تمام صفحه">⛶</button><button class="pd" type="button" aria-label="دانلود"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button><button class="pq" type="button" aria-label="بستن پخش">✕</button></div></div><div class="spn"><div class="rg"><i></i><b>0%</b></div><span>در حال جستجو<span class="dt"><i>.</i><i>.</i><i>.</i></span></span></div><div class="dls"></div><div class="res"></div>';
+ d.innerHTML='<div class="fl"><div class="iw"><input type="url" inputmode="url" dir="ltr" autocomplete="off" placeholder="لینک دانلود، یا نام فیلم، سریال و آهنگ"><button class="cl" type="button" aria-label="پاک کردن">×</button></div><button class="pri go">دانلود</button></div><div class="bar"><i></i><b class="bp"></b></div><div class="nm"></div><div class="inf"><span class="t1"><span class="ta"></span><span class="dt"><i>.</i><i>.</i><i>.</i></span><span class="tz"></span></span><span class="t2"></span></div><div class="er"></div><div class="acts"></div><div class="pl"><video playsinline preload="metadata"></video><div class="yv"></div><button class="xf" type="button" aria-label="خروج از تمام‌صفحه">✕</button><div class="pt"></div><div class="qp"></div><div class="pc"><button class="pb" type="button" aria-label="پخش و توقف">▶</button><input type="range" class="sk" min="0" max="1000" value="0" aria-label="نوار زمان"><span class="tm">0:00</span><button class="pf" type="button" aria-label="تمام صفحه">⛶</button><button class="pd" type="button" aria-label="دانلود"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button><button class="pq" type="button" aria-label="بستن پخش">✕</button></div></div><div class="spn"><div class="rg"><i></i><b>0%</b></div><span>در حال جستجو<span class="dt"><i>.</i><i>.</i><i>.</i></span></span></div><div class="dls"></div><div class="res"></div>';
  const inp=d.querySelector('input');
  const iw=d.querySelector('.iw');
  inp.oninput=()=>{it.url=inp.value;sync(it);if(!inp.value.trim()){killSearch(it);it.res=[];rr(it);stopPv(it);sync(it)}};
@@ -1089,12 +1103,13 @@ function go(it){
  if(it.st==='run'){it.ac.abort();return}
  const u=((it.url||'').match(/https?:\/\/[^\s"'<>]+/i)||[''])[0];
  if(!u){const t=(it.url||'').trim();if(t.length>1){search(it,t);return}it.st='err';it.err='لینک یا نام ویدیو/آهنگ را وارد کنید';it.name='';sync(it);return}
- if(!it.dl&&/^https?:/i.test(u)&&FILE_RE.test(u)&&!/\.m3u8?([?#]|$)/i.test(u)){
-  const r=mp({t:nameFrom(u,'','')||u,u});r.d=(u.match(/^https?:\/\/([^\/?#]+)/i)||['',''])[1];
-  learn(u);it.url=u;document.querySelector('#i'+it.id+' input').value=u;killSearch(it);stopPv(it);
+ const igm=/^https?:\/\/(?:www\.|m\.)?instagram\.com\/(?:[\w.]+\/)?(p|reels?|tv)\/([\w-]+)/i.exec(u);
+ if(!it.dl&&/^https?:/i.test(u)&&(igm||FILE_RE.test(u)&&!/\.m3u8?([?#]|$)/i.test(u))){
+  let r;if(igm){const ty=igm[1].toLowerCase().replace('reels','reel');r={t:'اینستاگرام ('+igm[2]+')',k:'ویدیو',url:'https://www.instagram.com/'+ty+'/'+igm[2]+'/',h:'Instagram '+igm[2],ig:ty+'/'+igm[2],d:'instagram.com',pb:2}}else{r=mp({t:nameFrom(u,'','')||u,u});r.d=(u.match(/^https?:\/\/([^\/?#]+)/i)||['',''])[1]}
+  learn(r.url);it.url=r.url;document.querySelector('#i'+it.id+' input').value=r.url;killSearch(it);stopPv(it);
   it.au=1;it.ss=null;it.top=-1;it.tab='all';it.res=[r];it.weak=[];it.skip=[];it.col=0;it.lim=PG;
   it.st='idle';it.err='';it.name='';it.nat=0;it.dlu='';sync(it);
-  rr(it,'لینک مستقیم: با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
+  rr(it,(igm?'پست اینستاگرام':'لینک مستقیم')+': با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
  it.dl=0;
  learn(u);it.au=1;it.q=(it.url||'').replace(u,'').trim();it.res=[];it.col=0;it.lim=PG;rr(it);
  it.url=u;document.querySelector('#i'+it.id+' input').value=u;
