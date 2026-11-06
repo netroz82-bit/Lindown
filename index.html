@@ -196,7 +196,7 @@ select{width:100%;font:inherit;color:var(--t);background:var(--c);border:1px sol
 <script>
 const $=s=>document.querySelector(s);
 /* نسخهٔ برنامه = سال(۲رقم).ماه.روز.ساعت.دقیقه (میلادی، بدون صفر ابتدایی) — با هر بار تولید فایل جدید به‌روز می‌شود */
-const VER='26.11.6.6.14';$('#ver').textContent=VER;
+const VER='26.11.6.15.3';$('#ver').textContent=VER;
 const DEFSITES='nex1music.ir\nmusicdel.ir\navamovie.ir\ndownloadha.com\ndigimoviez.com\nuptvs.com\ngisomusic.com\nbehplay.com\nbehtaraneh.com\naftabmusic.com\nshabamusic.com\ngitarmuzic.com\nmusicrooz.com\nzardis.net\nremiixbaz.com\ntfilm12.ir\nbandmoviez.one\nnetpaak.ir';
 const DEFPP='https://royal-mode-d4ce.netroz82.workers.dev/';
 const DEFAPI='https://save.brianrianrehan.com/api/v1/download';
@@ -452,9 +452,29 @@ function msg(e){
  if(/^HTTP 404/.test(m))return 'لینک پیدا نشد (HTTP 404)';
  return m||'خطای ناشناخته'}
 
+const APIS=/(youtube\.com|youtu\.be|instagram\.com|tiktok\.com|facebook\.com|fb\.watch|twitter\.com|\/\/x\.com)/i;
+function showDirect(it,r,label){
+ learn(r.url);it.url=r.url;const inp=document.querySelector('#i'+it.id+' input');if(inp)inp.value=r.url;killSearch(it);stopPv(it);
+ it.au=1;it.ss=null;it.top=-1;it.tab='all';it.res=[r];it.weak=[];it.skip=[];it.col=0;it.lim=PG;
+ it.st='idle';it.err='';it.name='';it.nat=0;it.dlu='';sync(it);rr(it,label)}
+function sniffMedia(u,sig){return new Promise(res=>{
+ const v=document.createElement('video');let done=0,t=0;
+ const fin=x=>{if(done)return;done=1;clearTimeout(t);v.onloadedmetadata=v.onerror=null;try{v.removeAttribute('src');v.load()}catch(e){}res(x)};
+ t=setTimeout(()=>fin(null),4500);
+ v.preload='metadata';v.muted=true;v.playsInline=true;
+ v.onloadedmetadata=()=>fin({vid:v.videoWidth>0,dur:isFinite(v.duration)?v.duration:0});
+ v.onerror=()=>fin(null);
+ if(sig)sig.addEventListener('abort',()=>fin(null));
+ v.src=u})}
 async function run(it){
  it.sr=0;it.nat=0;it.dlu='';it.ac=new AbortController();it.st='run';it.err='';it.pct=-1;it.txt='در حال اتصال...';it.sp='';sync(it);
  try{
+  if(!it.nsn&&/^https?:/i.test(it.url)&&!FILE_RE.test(it.url)&&!APIS.test(it.url)&&!/\.m3u8?([?#]|$)/i.test(it.url)&&!/^https?:\/\/(?:t|telegram)\.me\//i.test(it.url)){
+   it.txt='در حال بررسی لینک...';sync(it);
+   const m=await sniffMedia(it.url,it.ac.signal);
+   if(it.ac.signal.aborted)throw new Error('cancel');
+   if(m){const u=it.url,h=(u.match(/^https?:\/\/([^\/?#]+)/i)||['',''])[1],r=mp({t:nameFrom(u,'','')||h,u});r.k=m.vid?'ویدیو':'صوت';r.d=h;r.dr=m.dur||0;showDirect(it,r,'لینک مستقیم: با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
+  }
   try{API()&&/(youtube\.com|youtu\.be|instagram\.com|tiktok\.com|facebook\.com|fb\.watch|twitter\.com|\/\/x\.com)/i.test(it.url)?await viaApi(it,it.url):/\.m3u8?([?#]|$)/i.test(it.url)?await hls(it,it.url):/^https?:\/\/(?:t|telegram)\.me\//i.test(it.url)?await tg(it,it.url):await direct(it,it.url)}
   catch(e){if(e.message==='PAGE'&&!it.ac.signal.aborted){if(API()){try{await viaApi(it,it.url)}catch(e2){await page(it,it.url)}}else await page(it,it.url)}else throw e}
  }catch(e){
@@ -1007,17 +1027,18 @@ function ytShow(it,d,r){
  const fr=d.querySelector('.yv iframe');if(fr)fr.onload=()=>{try{fr.contentWindow.postMessage(JSON.stringify({event:'listening',id:1,channel:'widget'}),'*')}catch(e){}};
  toPl(it)}
 function igShow(it,d,r){
+ const tk=!!r.tt,nm=tk?'تیک‌تاک':'اینستاگرام';
  ytReset(it,d);
- d.querySelector('.pt').textContent='📷 '+r.t;
+ d.querySelector('.pt').textContent=(tk?'🎵 ':'📷 ')+r.t;
  d.querySelector('.pl').classList.add('on','yt');
- d.querySelector('.qp').innerHTML='<div class="qn">پیش‌نمایش از خود اینستاگرام؛ فقط پست‌های عمومی و بدون فیلترشکن ممکن است باز نشود.</div><div class="qa"><button type="button" class="pri" data-qd="1">دانلود</button><button type="button" data-qo="1">باز کردن در اینستاگرام</button><button type="button" data-qx="1">بستن</button></div>';
- d.querySelector('.yv').innerHTML='<iframe class="ig" src="https://www.instagram.com/'+r.ig+'/embed/" title="پیش‌نمایش" allow="autoplay; encrypted-media; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+ d.querySelector('.qp').innerHTML='<div class="qn">پیش‌نمایش از خود '+nm+'؛ فقط پست‌های عمومی و بدون فیلترشکن ممکن است باز نشود.</div><div class="qa"><button type="button" class="pri" data-qd="1">دانلود</button><button type="button" data-qo="1">باز کردن در '+nm+'</button><button type="button" data-qx="1">بستن</button></div>';
+ d.querySelector('.yv').innerHTML='<iframe class="ig" src="'+(tk?'https://www.tiktok.com/embed/v2/'+r.tt:'https://www.instagram.com/'+r.ig+'/embed/')+'" title="پیش‌نمایش" allow="autoplay; encrypted-media; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
  toPl(it)}
 async function play(it,k){
  const r=(it.res||[])[k];if(!r)return;
  items.forEach(x=>{if(x.v&&(x===it||x.cur))stopPv(x)});it.cur=r;mkNp(it);
  const d=document.getElementById('i'+it.id),v=it.v,pt=d.querySelector('.pt');
- if(r.yt){ytShow(it,d,r);return}if(r.ig){igShow(it,d,r);return}d.querySelector('.pl').classList.add('on');d.querySelector('.pl').classList.remove('yt','pv');d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();pt.textContent='در حال آماده‌سازی...';toPl(it);const tk=it.ytk;
+ if(r.yt){ytShow(it,d,r);return}if(r.ig||r.tt){igShow(it,d,r);return}d.querySelector('.pl').classList.add('on');d.querySelector('.pl').classList.remove('yt','pv');d.querySelector('.yv').innerHTML='';it.ytk=(it.ytk||0)+1;if(it.pac)it.pac.abort();pt.textContent='در حال آماده‌سازی...';toPl(it);const tk=it.ytk;
  try{if(r.ia&&!r.url)r.url=await iaFile(it,r.ia)}catch(e){if(it.ytk===tk)pt.textContent=msg(e);return}
  if(it.ytk!==tk)return;
  v.style.display=r.k==='صوت'?'none':'block';d.querySelector('.pf').style.display=r.k==='صوت'?'none':'';
@@ -1103,14 +1124,14 @@ function go(it){
  if(it.st==='run'){it.ac.abort();return}
  const u=((it.url||'').match(/https?:\/\/[^\s"'<>]+/i)||[''])[0];
  if(!u){const t=(it.url||'').trim();if(t.length>1){search(it,t);return}it.st='err';it.err='لینک یا نام ویدیو/آهنگ را وارد کنید';it.name='';sync(it);return}
- const igm=/^https?:\/\/(?:www\.|m\.)?instagram\.com\/(?:[\w.]+\/)?(p|reels?|tv)\/([\w-]+)/i.exec(u);
- if(!it.dl&&/^https?:/i.test(u)&&(igm||FILE_RE.test(u)&&!/\.m3u8?([?#]|$)/i.test(u))){
-  let r;if(igm){const ty=igm[1].toLowerCase().replace('reels','reel');r={t:'اینستاگرام ('+igm[2]+')',k:'ویدیو',url:'https://www.instagram.com/'+ty+'/'+igm[2]+'/',h:'Instagram '+igm[2],ig:ty+'/'+igm[2],d:'instagram.com',pb:2}}else{r=mp({t:nameFrom(u,'','')||u,u});r.d=(u.match(/^https?:\/\/([^\/?#]+)/i)||['',''])[1]}
-  learn(r.url);it.url=r.url;document.querySelector('#i'+it.id+' input').value=r.url;killSearch(it);stopPv(it);
-  it.au=1;it.ss=null;it.top=-1;it.tab='all';it.res=[r];it.weak=[];it.skip=[];it.col=0;it.lim=PG;
-  it.st='idle';it.err='';it.name='';it.nat=0;it.dlu='';sync(it);
-  rr(it,(igm?'پست اینستاگرام':'لینک مستقیم')+': با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
- it.dl=0;
+ const igm=/^https?:\/\/(?:www\.|m\.)?instagram\.com\/(?:[\w.]+\/)?(p|reels?|tv)\/([\w-]+)/i.exec(u),ttm=/^https?:\/\/(?:www\.|m\.)?tiktok\.com\/(@[\w.-]+)\/video\/(\d+)/i.exec(u);
+ if(!it.dl&&/^https?:/i.test(u)&&(igm||ttm||FILE_RE.test(u)&&!/\.m3u8?([?#]|$)/i.test(u))){
+  let r,lb='لینک مستقیم';
+  if(igm){const ty=igm[1].toLowerCase().replace('reels','reel');r={t:'اینستاگرام ('+igm[2]+')',k:'ویدیو',url:'https://www.instagram.com/'+ty+'/'+igm[2]+'/',h:'Instagram '+igm[2],ig:ty+'/'+igm[2],d:'instagram.com',pb:2};lb='پست اینستاگرام'}
+  else if(ttm){r={t:'تیک‌تاک ('+ttm[2]+')',k:'ویدیو',url:'https://www.tiktok.com/'+ttm[1]+'/video/'+ttm[2],h:'TikTok '+ttm[2],tt:ttm[2],d:'tiktok.com',pb:2};lb='ویدیوی تیک‌تاک'}
+  else{r=mp({t:nameFrom(u,'','')||u,u});r.d=(u.match(/^https?:\/\/([^\/?#]+)/i)||['',''])[1]}
+  showDirect(it,r,lb+': با ▶ پیش‌نمایش کنید یا با ⬇ دانلود کنید');return}
+ it.nsn=it.dl;it.dl=0;
  learn(u);it.au=1;it.q=(it.url||'').replace(u,'').trim();it.res=[];it.col=0;it.lim=PG;rr(it);
  it.url=u;document.querySelector('#i'+it.id+' input').value=u;
  if(it.href){URL.revokeObjectURL(it.href);it.href=''}
